@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="260dp"
         android:orientation="vertical"
         android:background="@color/black">
 
@@ -17,7 +17,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:src="@drawable/logo_colorida" />
 
     </LinearLayout>
@@ -42,7 +42,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Insira seu usuário" />
+                android:hint="Insira um nome de usuário" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -53,7 +53,18 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Insira sua senha" />
+                android:hint="Nova senha" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Confirmar Senha" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Repita a senha" />
 
         </LinearLayout>
 
@@ -62,14 +73,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:text="Login" />
+            android:text="Cadastrar" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:text="CADASTRAR" />
+            android:text="Já possui conta? LOGIN" />
 
     </LinearLayout>
 
