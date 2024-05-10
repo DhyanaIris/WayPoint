@@ -3,7 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="hintGray">#7A7A7A</color>
-    <color name="orange">#F8AC25</color>
+    <color name="orange">#F49738</color>
+    <color name="blueGray">#575177</color>
     <color name="lightOrange">#FCC215</color>
     <color name="darkOrange">#F47C40</color>
     <color name="fadedOrange">#F49738</color>
