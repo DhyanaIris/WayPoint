@@ -74,6 +74,7 @@
         android:text="Novo Campo" />
 
     <Button
+        android:id="@+id/btnAddViagem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -83,6 +84,7 @@
         android:text="Adicionar à Viagem" />
 
     <Button
+        android:id="@+id/btnPularEtapa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

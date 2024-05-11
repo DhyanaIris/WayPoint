@@ -22,6 +22,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".CadastroActivity"/>
+        <activity android:name=".DadosGeraisActivity"/>
+        <activity android:name=".ListaViagensActivity"/>
+        <activity android:name=".GasolinaActivity"/>
+        <activity android:name=".TarifaAereaActivity"/>
+        <activity android:name="RefeicoesActivity"/>
+        <activity android:name="HospedagemActivity"/>
+        <activity android:name="DiversosActivity"/>
+        <activity android:name="TotalActivity"/>
     </application>
 
 </manifest>
