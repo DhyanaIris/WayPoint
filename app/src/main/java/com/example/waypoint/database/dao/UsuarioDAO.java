@@ -139,4 +139,25 @@ public class UsuarioDAO extends AbstrataDAO {
 
         return usuarioExiste;
     }
+
+    public boolean validarCredenciais(String nomeUsuario, String senha) {
+        Open();
+
+        Cursor c = db.query(
+                UsuarioModel.TABELA_NOME,
+                new String[]{UsuarioModel.COLUNA_NOME_USUARIO},
+                UsuarioModel.COLUNA_NOME_USUARIO + " = ? AND " + UsuarioModel.COLUNA_SENHA + " = ?",
+                new String[]{nomeUsuario, senha},
+                null,
+                null,
+                null
+        );
+
+        boolean credenciaisValidas = c.getCount() > 0;
+
+        c.close();
+        Close();
+
+        return credenciaisValidas;
+    }
 }

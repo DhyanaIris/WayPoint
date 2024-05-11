@@ -43,6 +43,7 @@
                 android:text="Usuário" />
 
             <EditText
+                android:id="@+id/editTextUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textColorHint="@color/hintGray"
@@ -57,6 +58,7 @@
                 android:text="Senha" />
 
             <EditText
+                android:id="@+id/editTextSenha"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textColorHint="@color/hintGray"
