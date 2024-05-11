@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="32dp"
+            android:textSize="32sp"
             android:textColor="@color/orange"
             android:text="Diversos"/>
 
@@ -38,7 +38,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:text="Lugar Visitado" />
 
@@ -51,7 +51,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:text="Custo" />
 
@@ -70,7 +70,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="35dp"
         android:backgroundTint="@color/orange"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:text="Novo Campo" />
 
     <Button
@@ -80,7 +80,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="95dp"
         android:backgroundTint="@color/orange"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:text="Adicionar à Viagem" />
 
     <Button
@@ -88,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="15sp"
         android:backgroundTint="@color/orange"
         android:textSize="16dp"
         android:text="Pular Etapa" />

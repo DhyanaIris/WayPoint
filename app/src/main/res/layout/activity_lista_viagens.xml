@@ -20,7 +20,7 @@
             android:background="@drawable/rounded"
             android:padding="15dp"
             android:layout_marginTop="20dp"
-            android:textSize="32dp"
+            android:textSize="32sp"
             android:textStyle="bold"
             android:textColor="@color/orange"
             android:text="Viagens"/>
@@ -51,7 +51,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="26dp"
+                    android:textSize="26sp"
                     android:textStyle="bold"
                     android:text="Viagem - 1" />
 
@@ -77,7 +77,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:backgroundTint="@color/blueGray"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:text="Nova Viagem" />
 
     </LinearLayout>

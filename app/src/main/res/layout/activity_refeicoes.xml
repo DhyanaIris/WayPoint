@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="32dp"
+            android:textSize="32sp"
             android:textColor="@color/orange"
             android:text="Refeições"/>
 
@@ -38,7 +38,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:text="Custo por Refeição" />
 
@@ -51,7 +51,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:text="Refeições por Dia" />
 
@@ -64,7 +64,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:text="Total" />
 
@@ -82,7 +82,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
         android:backgroundTint="@color/orange"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:text="Adicionar à Viagem" />
 
     <Button
@@ -92,7 +92,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:backgroundTint="@color/orange"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:text="Pular Etapa" />
 
 </LinearLayout>
