@@ -24,7 +24,7 @@
             android:gravity="center"
             android:textSize="32dp"
             android:textColor="@color/orange"
-            android:text="Total"/>
+            android:text="Relatório"/>
 
     </LinearLayout>
 
@@ -33,14 +33,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="50dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18dp"
             android:textStyle="bold"
-            android:text="Gasolina" />
+            android:text="Total de Viajantes" />
 
         <EditText
             android:layout_width="match_parent"
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:textSize="18dp"
             android:textStyle="bold"
-            android:text="Tarifa Aérea" />
+            android:text="Duração da Viagem" />
 
         <EditText
             android:layout_width="match_parent"
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:textSize="18dp"
             android:textStyle="bold"
-            android:text="Refeições" />
+            android:text="Custo Total da Viagem" />
 
         <EditText
             android:layout_width="match_parent"
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:textSize="18dp"
             android:textStyle="bold"
-            android:text="Hospedagem" />
+            android:text="Custo por Pessoa" />
 
         <EditText
             android:layout_width="match_parent"
@@ -100,21 +100,7 @@
             android:layout_height="wrap_content"
             android:textSize="18dp"
             android:textStyle="bold"
-            android:text="Diversos" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none"
-            android:textIsSelectable="true"
-            android:textColorHint="@color/hintGray"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:text="Total" />
+            android:text="Destinação" />
 
         <EditText
             android:layout_width="match_parent"
@@ -129,7 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/orange"
         android:textSize="16dp"
         android:text="Próxima Etapa" />
