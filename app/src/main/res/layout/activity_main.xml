@@ -16,8 +16,18 @@
             android:layout_width="170dp"
             android:layout_height="170dp"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:src="@drawable/logo_branca" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/white"
+            android:text="WayPoint" />
 
     </LinearLayout>
 
@@ -46,6 +56,7 @@
                 android:id="@+id/editTextUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:singleLine="true"
                 android:textColorHint="@color/hintGray"
                 android:hint="Insira seu usuário" />
 
@@ -61,7 +72,9 @@
                 android:id="@+id/editTextSenha"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:singleLine="true"
                 android:textColorHint="@color/hintGray"
+                android:inputType="textPassword"
                 android:hint="Insira sua senha" />
 
         </LinearLayout>

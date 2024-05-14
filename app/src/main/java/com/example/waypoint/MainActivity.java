@@ -18,11 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView btnCadastro;
     private Button btnLogin;
-
-    private EditText editTextUsuario;
-
-    private EditText editTextSenha;
-
+    private EditText editTextUsuario, editTextSenha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,22 +44,23 @@ public class MainActivity extends AppCompatActivity {
                 login();
             }
         });
-        };
+    };
 
+    private void login() {
+        String nomeUsuario = editTextUsuario.getText().toString();
+        String senha = editTextSenha.getText().toString();
 
-        private void login() {
-            String nomeUsuario = editTextUsuario.getText().toString();
-            String senha = editTextSenha.getText().toString();
+        UsuarioDAO usuarioDAO = new UsuarioDAO(MainActivity.this);
 
-            UsuarioDAO usuarioDAO = new UsuarioDAO(MainActivity.this);
+        if (usuarioDAO.validarCredenciais(nomeUsuario, senha)) {
+            long idUsuario = usuarioDAO.getIdUsuario(nomeUsuario);
+            MyApplication.getInstance().setIdUsuarioLogado(idUsuario);
 
-            if (usuarioDAO.validarCredenciais(nomeUsuario, senha)) {
-                Intent it = new Intent(MainActivity.this, ListaViagensActivity.class);
-                startActivity(it);
-            } else {
-                Toast.makeText(MainActivity.this, "Credenciais inválidas", Toast.LENGTH_SHORT).show();
-            }
+            Intent it = new Intent(MainActivity.this, ListaViagensActivity.class);
+            startActivity(it);
+        } else {
+            Toast.makeText(MainActivity.this, "Credenciais inválidas", Toast.LENGTH_SHORT).show();
         }
-
-
     }
+
+}

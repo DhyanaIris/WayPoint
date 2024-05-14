@@ -50,8 +50,9 @@ public class CadastroActivity extends AppCompatActivity {
 
     private void cadastrar() {
         usuarioDAO = new UsuarioDAO(CadastroActivity.this);
-        String nomeUsuario = String.valueOf(textUsuario.getText());
-        String senha = String.valueOf(textNovaSenha.getText());
+        String nomeUsuario = String.valueOf(textUsuario.getText()).trim();
+        String senha = String.valueOf(textNovaSenha.getText()).trim();
+        String confirmarSenha = String.valueOf(textConfirmaSenha.getText()).trim();
 
         if(usuarioDAO.verificarUsuarioExistente(nomeUsuario)) {
             Toast.makeText(CadastroActivity.this, "Este nome de usuário já está em uso", Toast.LENGTH_SHORT).show();
@@ -61,11 +62,12 @@ public class CadastroActivity extends AppCompatActivity {
         } else {
             UsuarioModel usuarioModel = new UsuarioModel();
             usuarioModel.setNomeUsuario(nomeUsuario);
-            if (senha.equals(textConfirmaSenha.getText().toString())) {
-                usuarioModel.setSenha(String.valueOf(textConfirmaSenha.getText()));
+            if (senha.equals(confirmarSenha)) {
+                usuarioModel.setSenha(confirmarSenha);
                 usuarioDAO.Insert(usuarioModel);
 
-                startActivity(new Intent(CadastroActivity.this, MainActivity.class));
+                Intent it = new Intent(CadastroActivity.this, MainActivity.class);
+                startActivity(it);
                 finish();
             } else {
                 Toast.makeText(CadastroActivity.this, "As senhas não coincidem", Toast.LENGTH_SHORT).show();

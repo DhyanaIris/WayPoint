@@ -160,4 +160,31 @@ public class UsuarioDAO extends AbstrataDAO {
 
         return credenciaisValidas;
     }
+
+    public long getIdUsuario(String nomeUsuario) {
+        Open();
+
+        long idUsuario = -1;
+
+        Cursor c = db.query(
+                UsuarioModel.TABELA_NOME,
+                new String[]{UsuarioModel.COLUNA_ID},
+                UsuarioModel.COLUNA_NOME_USUARIO + " = ?",
+                new String[]{nomeUsuario},
+                null,
+                null,
+                null
+        );
+
+        int columnIndex = c.getColumnIndex(UsuarioModel.COLUNA_ID);
+
+        if (c.moveToFirst()) {
+            idUsuario = c.getLong(columnIndex);
+        }
+
+        c.close();
+        Close();
+
+        return idUsuario;
+    }
 }
