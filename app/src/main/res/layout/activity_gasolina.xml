@@ -43,6 +43,7 @@
             android:text="Km Totais" />
 
         <EditText
+            android:id="@+id/txtKmTotal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColorHint="@color/hintGray"
@@ -56,6 +57,7 @@
             android:text="Média Km/Litro" />
 
         <EditText
+            android:id="@+id/txtMediaKmLitro"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColorHint="@color/hintGray"
@@ -69,6 +71,7 @@
             android:text="Custo Médio Litro" />
 
         <EditText
+            android:id="@+id/txtCustoMedioLitro"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColorHint="@color/hintGray"
@@ -82,12 +85,14 @@
             android:text="Total de Veículos" />
 
         <EditText
+            android:id="@+id/txtTotalVeiculos"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColorHint="@color/hintGray"
             android:hint="Informe o total de veículos" />
 
         <TextView
+            android:id="@+id/txtTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"

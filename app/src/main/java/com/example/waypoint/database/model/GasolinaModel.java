@@ -32,10 +32,10 @@ public class GasolinaModel {
             "DROP TABLE IF EXISTS "+TABELA_NOME;
 
     private long id;
-    private int kmTotal;
+    private float kmTotal;
     private float mediaKmLitro;
     private float custoLitro;
-    private int totalVeiculos;
+    private float totalVeiculos;
     private float total;
     private long idUsuario;
 
@@ -47,11 +47,11 @@ public class GasolinaModel {
         this.id = id;
     }
 
-    public int getKmTotal() {
+    public float getKmTotal() {
         return kmTotal;
     }
 
-    public void setKmTotal(int kmTotal) {
+    public void setKmTotal(float kmTotal) {
         this.kmTotal = kmTotal;
     }
 
@@ -71,11 +71,11 @@ public class GasolinaModel {
         this.custoLitro = custoLitro;
     }
 
-    public int getTotalVeiculos() {
+    public float getTotalVeiculos() {
         return totalVeiculos;
     }
 
-    public void setTotalVeiculos(int totalVeiculos) {
+    public void setTotalVeiculos(float totalVeiculos) {
         this.totalVeiculos = totalVeiculos;
     }
 
