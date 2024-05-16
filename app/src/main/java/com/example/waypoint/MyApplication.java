@@ -5,6 +5,7 @@ import android.app.Application;
 public class MyApplication extends Application {
     private static MyApplication instance;
     private long idUsuarioLogado;
+    private long idViagemAtual;
 
     @Override
     public void onCreate() {
@@ -22,5 +23,13 @@ public class MyApplication extends Application {
 
     public void setIdUsuarioLogado(long idUsuarioLogado) {
         this.idUsuarioLogado = idUsuarioLogado;
+    }
+
+    public long getIdViagemAtual() {
+        return idViagemAtual;
+    }
+
+    public void setIdViagemAtual(long idViagemAtual) {
+        this.idViagemAtual = idViagemAtual;
     }
 }
