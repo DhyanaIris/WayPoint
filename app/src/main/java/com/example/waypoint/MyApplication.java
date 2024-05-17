@@ -4,8 +4,7 @@ import android.app.Application;
 
 public class MyApplication extends Application {
     private static MyApplication instance;
-    private long idUsuarioLogado;
-    private long idViagemAtual;
+    private long idUsuarioLogado, idViagemAtual;
 
     @Override
     public void onCreate() {

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class RelatorioActivity extends AppCompatActivity {
 
     private Button btnProxEtapa;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

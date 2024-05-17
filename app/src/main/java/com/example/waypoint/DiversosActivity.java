@@ -16,10 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class DiversosActivity extends AppCompatActivity {
 
     private LinearLayout containerLayout;
-    private Button btnNovoCampo;
+    private Button btnNovoCampo, btnAddViagem, btnPularEtapa;
 
-    private Button btnAddViagem;
-    private Button btnPularEtapa;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

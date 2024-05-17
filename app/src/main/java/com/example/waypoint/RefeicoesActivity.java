@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class RefeicoesActivity extends AppCompatActivity {
 
     private Button btnAddViagem, btnPularEtapa;
-
     private EditText txtCustoRefeicao, txtRefeicoesDia, txtTotal;
 
     @Override

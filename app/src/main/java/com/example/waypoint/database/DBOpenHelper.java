@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.waypoint.database.model.DadosGeraisModel;
+import com.example.waypoint.database.model.DiversosModel;
 import com.example.waypoint.database.model.GasolinaModel;
 import com.example.waypoint.database.model.HospedagemModel;
 import com.example.waypoint.database.model.RefeicoesModel;
@@ -30,6 +31,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         db.execSQL(TarifaAereaModel.CREATE_TABLE);
         db.execSQL(RefeicoesModel.CREATE_TABLE);
         db.execSQL(HospedagemModel.CREATE_TABLE);
+        db.execSQL(DiversosModel.CREATE_TABLE);
     }
 
     @Override

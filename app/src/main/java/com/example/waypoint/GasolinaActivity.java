@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class GasolinaActivity extends AppCompatActivity {
 
     private Button btnAddViagem, btnPularEtapa;
-
     private EditText txtKmTotal, txtMediaKmLitro, txtCustoMedioLitro, txtTotalVeiculos, txtTotal;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class HospedagemActivity extends AppCompatActivity {
 
     private Button btnAddViagem, btnPularEtapa;
-
     private EditText txtCustoNoite, txtTotalNoites, txtTotalQuartos, txtTotal;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
