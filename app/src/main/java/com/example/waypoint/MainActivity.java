@@ -16,17 +16,17 @@ import com.example.waypoint.database.dao.UsuarioDAO;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView btnCadastro;
+    private EditText txtUsuario, txtSenha;
     private Button btnLogin;
-    private EditText editTextUsuario, editTextSenha;
+    private TextView btnCadastro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editTextUsuario = findViewById(R.id.editTextUsuario);
-        editTextSenha = findViewById(R.id.editTextSenha);
+        txtUsuario = findViewById(R.id.txtUsuario);
+        txtSenha = findViewById(R.id.txtSenha);
 
         btnCadastro = findViewById(R.id.btnCadastro);
         btnCadastro.setOnClickListener(new View.OnClickListener() {
@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void login() {
-        String nomeUsuario = editTextUsuario.getText().toString();
-        String senha = editTextSenha.getText().toString();
+        String nomeUsuario = txtUsuario.getText().toString();
+        String senha = txtSenha.getText().toString();
 
         UsuarioDAO usuarioDAO = new UsuarioDAO(MainActivity.this);
 

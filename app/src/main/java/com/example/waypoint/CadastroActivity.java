@@ -17,7 +17,7 @@ import com.example.waypoint.database.model.UsuarioModel;
 public class CadastroActivity extends AppCompatActivity {
 
     private UsuarioDAO usuarioDAO;
-    private EditText textUsuario, textNovaSenha, textConfirmaSenha;
+    private EditText txtUsuario, txtNovaSenha, txtConfirmaSenha;
     private Button btnCadastrar;
     private TextView btnLogin;
 
@@ -26,9 +26,9 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        textUsuario = findViewById(R.id.textUsuario);
-        textNovaSenha = findViewById(R.id.textNovaSenha);
-        textConfirmaSenha = findViewById(R.id.textConfirmaSenha);
+        txtUsuario = findViewById(R.id.txtUsuario);
+        txtNovaSenha = findViewById(R.id.txtNovaSenha);
+        txtConfirmaSenha = findViewById(R.id.txtConfirmaSenha);
         btnCadastrar = findViewById(R.id.btnCadastrar);
         btnLogin = findViewById(R.id.btnLogin);
 
@@ -50,9 +50,9 @@ public class CadastroActivity extends AppCompatActivity {
 
     private void cadastrar() {
         usuarioDAO = new UsuarioDAO(CadastroActivity.this);
-        String nomeUsuario = String.valueOf(textUsuario.getText()).trim();
-        String senha = String.valueOf(textNovaSenha.getText()).trim();
-        String confirmarSenha = String.valueOf(textConfirmaSenha.getText()).trim();
+        String nomeUsuario = String.valueOf(txtUsuario.getText()).trim();
+        String senha = String.valueOf(txtNovaSenha.getText()).trim();
+        String confirmarSenha = String.valueOf(txtConfirmaSenha.getText()).trim();
 
         if(usuarioDAO.verificarUsuarioExistente(nomeUsuario)) {
             Toast.makeText(CadastroActivity.this, "Este nome de usuário já está em uso", Toast.LENGTH_SHORT).show();

@@ -8,6 +8,11 @@ import com.example.waypoint.database.model.ViagemModel;
 
 public class ViagemDAO extends AbstrataDAO {
 
+    private final String[] colunas = {
+            ViagemModel.COLUNA_ID,
+            ViagemModel.COLUNA_ID_USUARIO
+    };
+
     public ViagemDAO(Context context) {
         db_helper = new DBOpenHelper(context);
     }

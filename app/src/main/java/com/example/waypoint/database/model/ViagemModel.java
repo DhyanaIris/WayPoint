@@ -6,21 +6,21 @@ public class ViagemModel {
 
     public static final String
             COLUNA_ID = "_id",
-            COLUNA_ID_USUARIO = "usuario_id";
+            COLUNA_ID_USUARIO = "id_usuario";
 
 
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABELA_NOME + " ("
                     + COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + "FOREIGN KEY(" + COLUNA_ID_USUARIO + ") REFERENCES " + UsuarioModel.TABELA_NOME + "(" + UsuarioModel.COLUNA_ID + ")"
-                    + ");";
+                    + COLUNA_ID_USUARIO + " INTEGER, "
+                    + " FOREIGN KEY (" + COLUNA_ID_USUARIO + ") REFERENCES " + UsuarioModel.TABELA_NOME + "(" + UsuarioModel.COLUNA_ID + ")"
+                    + " )";
 
     public static final String DROP_TABLE =
             "DROP TABLE IF EXISTS " + TABELA_NOME;
 
     private long id;
     private long idUsuario;
-
 
     public long getId() {
         return id;
@@ -29,6 +29,7 @@ public class ViagemModel {
     public void setId(long id) {
         this.id = id;
     }
+
     public long getIdUsuario() {
         return idUsuario;
     }
@@ -36,6 +37,4 @@ public class ViagemModel {
     public void setIdUsuario(long idUsuario) {
         this.idUsuario = idUsuario;
     }
-
-
 }

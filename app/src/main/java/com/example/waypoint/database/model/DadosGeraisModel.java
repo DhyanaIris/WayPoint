@@ -10,7 +10,8 @@ public class DadosGeraisModel {
             COLUNA_VIAJANTES = "viajantes",
             COLUNA_DURACAO = "duracao",
             COLUNA_DESTINO = "destino",
-            COLUNA_ID_USUARIO = "id_usuario";
+            COLUNA_ID_USUARIO = "id_usuario",
+            COLUNA_ID_VIAGEM = "id_viagem";
 
 
     public static String CREATE_TABLE =
@@ -18,11 +19,14 @@ public class DadosGeraisModel {
                     " ( "
                     + COLUNA_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + COLUNA_NOME+" TEXT NOT NULL, "
-                    + COLUNA_VIAJANTES+" INTEGER NOT NULL, "
-                    + COLUNA_DURACAO+" TEXT NOT NULL, "
+                    + COLUNA_VIAJANTES+" FLOAT NOT NULL, "
+                    + COLUNA_DURACAO+" FLOAT NOT NULL, "
                     + COLUNA_DESTINO+" TEXT NOT NULL, "
                     + COLUNA_ID_USUARIO+" INTEGER, "
                     + " FOREIGN KEY (" + COLUNA_ID_USUARIO + ") REFERENCES " + UsuarioModel.TABELA_NOME + "(" + UsuarioModel.COLUNA_ID + ")"
+                    + " ), "
+                    + COLUNA_ID_VIAGEM+" INTEGER, "
+                    + " FOREIGN KEY (" + COLUNA_ID_VIAGEM + ") REFERENCES " + ViagemModel.TABELA_NOME + "(" + ViagemModel.COLUNA_ID + ")"
                     + " )";
 
 
@@ -31,10 +35,11 @@ public class DadosGeraisModel {
 
     private long id;
     private String nomeViagem;
-    private int viajantes;
-    private String duracao;
+    private float viajantes;
+    private float duracao;
     private String destino;
     private long idUsuario;
+    private long idViagem;
 
     public long getId() {
         return id;
@@ -52,19 +57,19 @@ public class DadosGeraisModel {
         this.nomeViagem = nomeViagem;
     }
 
-    public int getViajantes() {
+    public float getViajantes() {
         return viajantes;
     }
 
-    public void setViajantes(int viajantes) {
+    public void setViajantes(float viajantes) {
         this.viajantes = viajantes;
     }
 
-    public String getDuracao() {
+    public float getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(String duracao) {
+    public void setDuracao(float duracao) {
         this.duracao = duracao;
     }
 
@@ -82,5 +87,13 @@ public class DadosGeraisModel {
 
     public void setIdUsuario(long idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public long getIdViagem() {
+        return idViagem;
+    }
+
+    public void setIdViagem(long idViagem) {
+        this.idViagem = idViagem;
     }
 }

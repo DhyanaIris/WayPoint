@@ -1,7 +1,5 @@
 package com.example.waypoint.database.model;
 
-import static com.example.waypoint.database.model.DadosGeraisModel.COLUNA_DESTINO;
-
 public class GasolinaModel {
 
     public static String TABELA_NOME = "tb_gasolina";
@@ -24,7 +22,8 @@ public class GasolinaModel {
                     + COLUNA_MEDIA_KM_LITRO + " FLOAT NOT NULL, "
                     + COLUNA_CUSTO_LITRO + " FLOAT NOT NULL, "
                     + COLUNA_TOTAL_VEICULOS + " FLOAT NOT NULL, "
-                    + COLUNA_TOTAL + " TOTAL, "
+                    + COLUNA_TOTAL + " FLOAT NOT NULL, "
+                    + COLUNA_ID_USUARIO+" INTEGER, "
                     + " FOREIGN KEY (" + COLUNA_ID_USUARIO + ") REFERENCES " + UsuarioModel.TABELA_NOME + "(" + UsuarioModel.COLUNA_ID + ")"
                     + " )";
 

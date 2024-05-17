@@ -39,7 +39,7 @@ public class GasolinaDAO extends AbstrataDAO{
             values.put(gasolinaModel.COLUNA_TOTAL, gasolinaModel.getTotal());
             values.put(GasolinaModel.COLUNA_ID_USUARIO, gasolinaModel.getIdUsuario());
 
-            rowId = db.insert(DadosGeraisModel.TABELA_NOME, null, values);
+            rowId = db.insert(GasolinaModel.TABELA_NOME, null, values);
         }
         finally {
             Close();
@@ -60,13 +60,12 @@ public class GasolinaDAO extends AbstrataDAO{
             values.put(GasolinaModel.COLUNA_MEDIA_KM_LITRO, gasolinaModel.getMediaKmLitro());
             values.put(GasolinaModel.COLUNA_CUSTO_LITRO, gasolinaModel.getCustoLitro());
             values.put(GasolinaModel.COLUNA_TOTAL_VEICULOS, gasolinaModel.getTotalVeiculos());
-            values.put(gasolinaModel.COLUNA_TOTAL, gasolinaModel.getTotal());
-            values.put(GasolinaModel.COLUNA_ID_USUARIO, gasolinaModel.getIdUsuario());
+            values.put(GasolinaModel.COLUNA_TOTAL, gasolinaModel.getTotal());
 
             rowId  = db.update(
                     GasolinaModel.TABELA_NOME,
                     values,
-                    DadosGeraisModel.COLUNA_ID + " = ?",
+                    GasolinaModel.COLUNA_ID + " = ?",
                     new String[]{String.valueOf(gasolinaModel.getId())}
             );
         }
@@ -87,7 +86,7 @@ public class GasolinaDAO extends AbstrataDAO{
 
             rowId = db.delete(
                     GasolinaModel.TABELA_NOME,
-                    DadosGeraisModel.COLUNA_ID + " = ?",
+                    GasolinaModel.COLUNA_ID + " = ?",
                     new String[]{String.valueOf(gasolinaModel.getId())}
             );
         }
@@ -118,10 +117,10 @@ public class GasolinaDAO extends AbstrataDAO{
         while (!c.isAfterLast()) {
             GasolinaModel gasolinaModel = new GasolinaModel();
             gasolinaModel.setId(c.getInt(0));
-            gasolinaModel.setKmTotal(Float.parseFloat(c.getString(1)));
+            gasolinaModel.setKmTotal(c.getFloat(1));
             gasolinaModel.setMediaKmLitro(c.getFloat(2));
-            gasolinaModel.setCustoLitro(Float.parseFloat(c.getString(3)));
-            gasolinaModel.setTotalVeiculos(Float.parseFloat(c.getString(4)));
+            gasolinaModel.setCustoLitro(c.getFloat(3));
+            gasolinaModel.setTotalVeiculos(c.getFloat(4));
             gasolinaModel.setIdUsuario(c.getInt(5));
             listaGasolina.add(gasolinaModel);
             c.moveToNext();

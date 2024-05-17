@@ -16,7 +16,7 @@ import com.example.waypoint.database.model.DadosGeraisModel;
 public class DadosGeraisActivity extends AppCompatActivity {
 
     private DadosGeraisDAO dadosGeraisDAO;
-    private EditText textNomeViagem, textViajantes, textDuracao, textDestino;
+    private EditText txtNomeViagem, txtViajantes, txtDuracao, txtDestino;
     private Button btnAddControle;
 
     @Override
@@ -24,10 +24,10 @@ public class DadosGeraisActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados_gerais);
 
-        textNomeViagem = findViewById(R.id.txtNomeViagem);
-        textViajantes = findViewById(R.id.txtViajantes);
-        textDuracao = findViewById(R.id.txtDuracao);
-        textDestino = findViewById(R.id.txtDestino);
+        txtNomeViagem = findViewById(R.id.txtNomeViagem);
+        txtViajantes = findViewById(R.id.txtViajantes);
+        txtDuracao = findViewById(R.id.txtDuracao);
+        txtDestino = findViewById(R.id.txtDestino);
 
         btnAddControle = findViewById(R.id.btnAddControle);
         btnAddControle.setOnClickListener(new View.OnClickListener() {
@@ -41,21 +41,21 @@ public class DadosGeraisActivity extends AppCompatActivity {
 
     private void salvar() {
         dadosGeraisDAO = new DadosGeraisDAO(DadosGeraisActivity.this);
-        String nomeViagem = String.valueOf(textNomeViagem.getText()).trim();
-        String viajantes = String.valueOf(textViajantes.getText()).trim();
-        String duracao = String.valueOf(textDuracao.getText()).trim();
-        String destino = String.valueOf(textDestino.getText()).trim();
+        String nomeViagem = String.valueOf(txtNomeViagem.getText()).trim();
+        String viajantes = String.valueOf(txtViajantes.getText()).trim();
+        String duracao = String.valueOf(txtDuracao.getText()).trim();
+        String destino = String.valueOf(txtDestino.getText()).trim();
 
         if (nomeViagem.isEmpty() || viajantes.isEmpty() || duracao.isEmpty() || destino.isEmpty()) {
             Toast.makeText(DadosGeraisActivity.this, "Por favor, preencha todos os campos", Toast.LENGTH_SHORT).show();
         }
         DadosGeraisModel dadosGeraisModel = new DadosGeraisModel();
         dadosGeraisModel.setNomeViagem(nomeViagem);
-        dadosGeraisModel.setViajantes(Integer.parseInt(viajantes));
-        dadosGeraisModel.setDuracao(duracao);
+        dadosGeraisModel.setViajantes(Float.parseFloat(viajantes));
+        dadosGeraisModel.setDuracao(Float.parseFloat(duracao));
         dadosGeraisModel.setDestino(destino);
         dadosGeraisModel.setIdUsuario(MyApplication.getInstance().getIdUsuarioLogado());
-//        dadosGeraisDAO.Insert(dadosGeraisModel);
+        dadosGeraisModel.setIdViagem(MyApplication.getInstance().getIdViagemAtual());
 
         long rowId = dadosGeraisDAO.Insert(dadosGeraisModel);
 

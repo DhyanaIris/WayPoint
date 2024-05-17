@@ -53,7 +53,7 @@
                 android:text="Usuário" />
 
             <EditText
-                android:id="@+id/editTextUsuario"
+                android:id="@+id/txtUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:singleLine="true"
@@ -69,7 +69,7 @@
                 android:text="Senha" />
 
             <EditText
-                android:id="@+id/editTextSenha"
+                android:id="@+id/txtSenha"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:singleLine="true"
