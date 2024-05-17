@@ -16,7 +16,8 @@ public class TarifaAereaDAO extends AbstrataDAO {
             TarifaAereaModel.COLUNA_CUSTO_PESSOA,
             TarifaAereaModel.COLUNA_ALUGUEL_VEICULO,
             TarifaAereaModel.COLUNA_TOTAL,
-            TarifaAereaModel.COLUNA_ID_USUARIO
+            TarifaAereaModel.COLUNA_ID_USUARIO,
+            TarifaAereaModel.COLUNA_ID_VIAGEM,
     };
 
     public TarifaAereaDAO(Context context) { db_helper = new DBOpenHelper(context);
@@ -34,6 +35,7 @@ public class TarifaAereaDAO extends AbstrataDAO {
             values.put(TarifaAereaModel.COLUNA_ALUGUEL_VEICULO, tarifaAereaModel.getAluguelVeiculo());
             values.put(TarifaAereaModel.COLUNA_TOTAL, tarifaAereaModel.getTotal());
             values.put(TarifaAereaModel.COLUNA_ID_USUARIO, tarifaAereaModel.getIdUsuario());
+            values.put(TarifaAereaModel.COLUNA_ID_VIAGEM, tarifaAereaModel.getIdViagem());
 
             rowId = db.insert(TarifaAereaModel.TABELA_NOME, null, values);
         }
@@ -115,6 +117,7 @@ public class TarifaAereaDAO extends AbstrataDAO {
             tarifaAereaModel.setAluguelVeiculo(c.getFloat(2));
             tarifaAereaModel.setTotal(c.getFloat(3));
             tarifaAereaModel.setIdUsuario(c.getInt(4));
+            tarifaAereaModel.setIdViagem(c.getInt(5));
             listaTarifaAerea.add(tarifaAereaModel);
             c.moveToNext();
         }

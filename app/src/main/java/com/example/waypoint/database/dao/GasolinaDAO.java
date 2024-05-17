@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.example.waypoint.database.DBOpenHelper;
-import com.example.waypoint.database.model.DadosGeraisModel;
 import com.example.waypoint.database.model.GasolinaModel;
 
 import java.util.ArrayList;
@@ -18,7 +17,8 @@ public class GasolinaDAO extends AbstrataDAO{
             GasolinaModel.COLUNA_CUSTO_LITRO,
             GasolinaModel.COLUNA_TOTAL_VEICULOS,
             GasolinaModel.COLUNA_TOTAL,
-            GasolinaModel.COLUNA_ID_USUARIO
+            GasolinaModel.COLUNA_ID_USUARIO,
+            GasolinaModel.COLUNA_ID_VIAGEM,
     };
 
     public GasolinaDAO(Context context) { db_helper = new DBOpenHelper(context);
@@ -36,8 +36,9 @@ public class GasolinaDAO extends AbstrataDAO{
             values.put(GasolinaModel.COLUNA_MEDIA_KM_LITRO, gasolinaModel.getMediaKmLitro());
             values.put(GasolinaModel.COLUNA_CUSTO_LITRO, gasolinaModel.getCustoLitro());
             values.put(GasolinaModel.COLUNA_TOTAL_VEICULOS, gasolinaModel.getTotalVeiculos());
-            values.put(gasolinaModel.COLUNA_TOTAL, gasolinaModel.getTotal());
+            values.put(GasolinaModel.COLUNA_TOTAL, gasolinaModel.getTotal());
             values.put(GasolinaModel.COLUNA_ID_USUARIO, gasolinaModel.getIdUsuario());
+            values.put(GasolinaModel.COLUNA_ID_VIAGEM, gasolinaModel.getIdViagem());
 
             rowId = db.insert(GasolinaModel.TABELA_NOME, null, values);
         }
@@ -122,6 +123,7 @@ public class GasolinaDAO extends AbstrataDAO{
             gasolinaModel.setCustoLitro(c.getFloat(3));
             gasolinaModel.setTotalVeiculos(c.getFloat(4));
             gasolinaModel.setIdUsuario(c.getInt(5));
+            gasolinaModel.setIdViagem(c.getInt(6));
             listaGasolina.add(gasolinaModel);
             c.moveToNext();
         }

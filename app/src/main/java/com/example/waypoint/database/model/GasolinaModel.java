@@ -11,7 +11,8 @@ public class GasolinaModel {
             COLUNA_CUSTO_LITRO = "custo_litro",
             COLUNA_TOTAL_VEICULOS = "total_veiculos",
             COLUNA_TOTAL = "total",
-            COLUNA_ID_USUARIO = "id_usuario";
+            COLUNA_ID_USUARIO = "id_usuario",
+            COLUNA_ID_VIAGEM = "id_viagem";
 
 
     public static String CREATE_TABLE =
@@ -24,7 +25,9 @@ public class GasolinaModel {
                     + COLUNA_TOTAL_VEICULOS + " FLOAT NOT NULL, "
                     + COLUNA_TOTAL + " FLOAT NOT NULL, "
                     + COLUNA_ID_USUARIO+" INTEGER, "
-                    + " FOREIGN KEY (" + COLUNA_ID_USUARIO + ") REFERENCES " + UsuarioModel.TABELA_NOME + "(" + UsuarioModel.COLUNA_ID + ")"
+                    + COLUNA_ID_VIAGEM+" INTEGER, "
+                    + " FOREIGN KEY (" + COLUNA_ID_USUARIO + ") REFERENCES " + UsuarioModel.TABELA_NOME + "(" + UsuarioModel.COLUNA_ID + "), "
+                    + " FOREIGN KEY (" + COLUNA_ID_VIAGEM + ") REFERENCES " + ViagemModel.TABELA_NOME + "(" + ViagemModel.COLUNA_ID + ")"
                     + " )";
 
     public static String DROP_TABLE =
@@ -37,6 +40,7 @@ public class GasolinaModel {
     private float totalVeiculos;
     private float total;
     private long idUsuario;
+    private long idViagem;
 
     public long getId() {
         return id;
@@ -94,8 +98,11 @@ public class GasolinaModel {
         this.idUsuario = idUsuario;
     }
 
+    public long getIdViagem() {
+        return idViagem;
+    }
 
-
-
-
+    public void setIdViagem(long idViagem) {
+        this.idViagem = idViagem;
+    }
 }

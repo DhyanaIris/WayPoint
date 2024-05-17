@@ -15,7 +15,8 @@ public class RefeicoesDAO extends AbstrataDAO {
             RefeicoesModel.COLUNA_CUSTO_REFEICAO,
             RefeicoesModel.COLUNA_REFEICOES_DIA,
             RefeicoesModel.COLUNA_TOTAL,
-            RefeicoesModel.COLUNA_ID_USUARIO
+            RefeicoesModel.COLUNA_ID_USUARIO,
+            RefeicoesModel.COLUNA_ID_VIAGEM,
     };
 
     public RefeicoesDAO(Context context) { db_helper = new DBOpenHelper(context);
@@ -33,6 +34,7 @@ public class RefeicoesDAO extends AbstrataDAO {
             values.put(RefeicoesModel.COLUNA_REFEICOES_DIA, refeicoesModel.getRefeicoesDia());
             values.put(RefeicoesModel.COLUNA_TOTAL, refeicoesModel.getTotal());
             values.put(RefeicoesModel.COLUNA_ID_USUARIO, refeicoesModel.getIdUsuario());
+            values.put(RefeicoesModel.COLUNA_ID_VIAGEM, refeicoesModel.getIdViagem());
 
             rowId = db.insert(RefeicoesModel.TABELA_NOME, null, values);
         }
@@ -114,6 +116,7 @@ public class RefeicoesDAO extends AbstrataDAO {
             refeicoesModel.setRefeicoesDia(c.getFloat(2));
             refeicoesModel.setTotal(c.getFloat(3));
             refeicoesModel.setIdUsuario(c.getInt(4));
+            refeicoesModel.setIdViagem(c.getInt(5));
             listaRefeicoes.add(refeicoesModel);
             c.moveToNext();
         }

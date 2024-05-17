@@ -23,9 +23,8 @@ public class DadosGeraisModel {
                     + COLUNA_DURACAO+" FLOAT NOT NULL, "
                     + COLUNA_DESTINO+" TEXT NOT NULL, "
                     + COLUNA_ID_USUARIO+" INTEGER, "
-                    + " FOREIGN KEY (" + COLUNA_ID_USUARIO + ") REFERENCES " + UsuarioModel.TABELA_NOME + "(" + UsuarioModel.COLUNA_ID + ")"
-                    + " ), "
                     + COLUNA_ID_VIAGEM+" INTEGER, "
+                    + " FOREIGN KEY (" + COLUNA_ID_USUARIO + ") REFERENCES " + UsuarioModel.TABELA_NOME + "(" + UsuarioModel.COLUNA_ID + "), "
                     + " FOREIGN KEY (" + COLUNA_ID_VIAGEM + ") REFERENCES " + ViagemModel.TABELA_NOME + "(" + ViagemModel.COLUNA_ID + ")"
                     + " )";
 

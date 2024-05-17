@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.example.waypoint.database.DBOpenHelper;
-import com.example.waypoint.database.model.GasolinaModel;
 import com.example.waypoint.database.model.HospedagemModel;
 
 import java.util.ArrayList;
@@ -18,7 +17,8 @@ public class HospedagemDAO extends AbstrataDAO {
             HospedagemModel.COLUNA_TOTAL_NOITES,
             HospedagemModel.COLUNA_TOTAL_QUARTOS,
             HospedagemModel.COLUNA_TOTAL,
-            HospedagemModel.COLUNA_ID_USUARIO
+            HospedagemModel.COLUNA_ID_USUARIO,
+            HospedagemModel.COLUNA_ID_VIAGEM,
     };
 
     public HospedagemDAO(Context context) { db_helper = new DBOpenHelper(context);
@@ -37,6 +37,7 @@ public class HospedagemDAO extends AbstrataDAO {
             values.put(HospedagemModel.COLUNA_TOTAL_QUARTOS, hospedagemModel.getTotalQuartos());
             values.put(HospedagemModel.COLUNA_TOTAL, hospedagemModel.getTotal());
             values.put(HospedagemModel.COLUNA_ID_USUARIO, hospedagemModel.getIdUsuario());
+            values.put(HospedagemModel.COLUNA_ID_VIAGEM, hospedagemModel.getIdViagem());
 
             rowId = db.insert(HospedagemModel.TABELA_NOME, null, values);
         }
@@ -119,6 +120,7 @@ public class HospedagemDAO extends AbstrataDAO {
             hospedagemModel.setTotalNoites(c.getFloat(2));
             hospedagemModel.setTotalQuartos(c.getFloat(3));
             hospedagemModel.setIdUsuario(c.getInt(4));
+            hospedagemModel.setIdViagem(c.getInt(5));
             listaHospedagem.add(hospedagemModel);
             c.moveToNext();
         }

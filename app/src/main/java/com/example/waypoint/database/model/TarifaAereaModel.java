@@ -9,7 +9,8 @@ public class TarifaAereaModel {
             COLUNA_CUSTO_PESSOA = "custo_pessoa",
             COLUNA_ALUGUEL_VEICULO = "aluguel_veiculo",
             COLUNA_TOTAL = "total",
-            COLUNA_ID_USUARIO = "id_usuario";
+            COLUNA_ID_USUARIO = "id_usuario",
+            COLUNA_ID_VIAGEM = "id_viagem";
 
 
     public static String CREATE_TABLE =
@@ -20,8 +21,11 @@ public class TarifaAereaModel {
                     + COLUNA_ALUGUEL_VEICULO + " FLOAT NOT NULL, "
                     + COLUNA_TOTAL + " FLOAT NOT NULL, "
                     + COLUNA_ID_USUARIO+" INTEGER, "
-                    + " FOREIGN KEY (" + COLUNA_ID_USUARIO + ") REFERENCES " + UsuarioModel.TABELA_NOME + "(" + UsuarioModel.COLUNA_ID + ")"
+                    + COLUNA_ID_VIAGEM+" INTEGER, "
+                    + " FOREIGN KEY (" + COLUNA_ID_USUARIO + ") REFERENCES " + UsuarioModel.TABELA_NOME + "(" + UsuarioModel.COLUNA_ID + "), "
+                    + " FOREIGN KEY (" + COLUNA_ID_VIAGEM + ") REFERENCES " + ViagemModel.TABELA_NOME + "(" + ViagemModel.COLUNA_ID + ")"
                     + " )";
+
 
     public static String DROP_TABLE =
             "DROP TABLE IF EXISTS "+TABELA_NOME;
@@ -31,6 +35,7 @@ public class TarifaAereaModel {
     private float aluguelVeiculo;
     private float total;
     private long idUsuario;
+    private long idViagem;
 
     public long getId() {
         return id;
@@ -70,5 +75,13 @@ public class TarifaAereaModel {
 
     public void setIdUsuario(long idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public long getIdViagem() {
+        return idViagem;
+    }
+
+    public void setIdViagem(long idViagem) {
+        this.idViagem = idViagem;
     }
 }
