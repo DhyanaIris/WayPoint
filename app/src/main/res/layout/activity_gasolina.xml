@@ -92,7 +92,6 @@
             android:hint="Informe o total de veículos" />
 
         <TextView
-            android:id="@+id/txtTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
@@ -100,6 +99,7 @@
             android:text="Total" />
 
         <EditText
+            android:id="@+id/txtTotal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColorHint="@color/hintGray"/>

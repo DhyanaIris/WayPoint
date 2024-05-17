@@ -33,7 +33,7 @@
         <activity android:name="RefeicoesActivity"/>
         <activity android:name="HospedagemActivity"/>
         <activity android:name="DiversosActivity"/>
-        <activity android:name="TotalActivity"/>
+        <activity android:name=".RelatorioActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"

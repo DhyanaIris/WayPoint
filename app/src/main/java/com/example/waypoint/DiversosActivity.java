@@ -39,7 +39,7 @@ public class DiversosActivity extends AppCompatActivity {
         btnAddViagem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(DiversosActivity.this, TotalActivity.class);
+                Intent it = new Intent(DiversosActivity.this, RelatorioActivity.class);
                 startActivity(it);
             }
         });
@@ -48,7 +48,7 @@ public class DiversosActivity extends AppCompatActivity {
         btnPularEtapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(DiversosActivity.this, TotalActivity.class);
+                Intent it = new Intent(DiversosActivity.this, RelatorioActivity.class);
                 startActivity(it);
             }
         });

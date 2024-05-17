@@ -8,19 +8,19 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class TotalActivity extends AppCompatActivity {
+public class RelatorioActivity extends AppCompatActivity {
 
     private Button btnProxEtapa;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_total);
+        setContentView(R.layout.activity_relatorio);
 
         btnProxEtapa = findViewById(R.id.btnProxEtapa);
         btnProxEtapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(TotalActivity.this, ListaViagensActivity.class);
+                Intent it = new Intent(RelatorioActivity.this, ListaViagensActivity.class);
                 startActivity(it);
             }
         });

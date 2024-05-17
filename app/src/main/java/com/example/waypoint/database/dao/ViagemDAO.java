@@ -2,9 +2,12 @@ package com.example.waypoint.database.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 
 import com.example.waypoint.database.DBOpenHelper;
 import com.example.waypoint.database.model.ViagemModel;
+
+import java.util.ArrayList;
 
 public class ViagemDAO extends AbstrataDAO {
 
@@ -33,4 +36,51 @@ public class ViagemDAO extends AbstrataDAO {
 
         return rowId;
     }
+
+    public boolean deleteViagem(long idViagem) {
+        boolean isDeleted = false;
+
+        try {
+            Open();
+            int rowsAffected = db.delete(ViagemModel.TABELA_NOME, ViagemModel.COLUNA_ID + " = ?", new String[]{String.valueOf(idViagem)});
+            isDeleted = rowsAffected > 0;
+        } finally {
+            Close();
+        }
+
+        return isDeleted;
+    }
+
+    public ArrayList<ViagemModel> selectAll(long idUsuario) {
+        ArrayList<ViagemModel> listaViagens = new ArrayList<>();
+
+        try {
+            Open();
+            Cursor cursor = db.query(
+                    ViagemModel.TABELA_NOME,
+                    null, // Select all columns
+                    ViagemModel.COLUNA_ID_USUARIO + " = ?",
+                    new String[]{String.valueOf(idUsuario)},
+                    null,
+                    null,
+                    null
+            );
+
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    ViagemModel viagem = new ViagemModel();
+                    viagem.setId(cursor.getLong(cursor.getColumnIndexOrThrow(ViagemModel.COLUNA_ID)));
+                    viagem.setIdUsuario(cursor.getLong(cursor.getColumnIndexOrThrow(ViagemModel.COLUNA_ID_USUARIO)));
+                    listaViagens.add(viagem);
+                } while (cursor.moveToNext());
+
+                cursor.close();
+            }
+        } finally {
+            Close();
+        }
+
+        return listaViagens;
+    }
+
 }

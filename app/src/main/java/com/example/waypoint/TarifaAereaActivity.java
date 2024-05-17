@@ -4,19 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class TarifaAereaActivity extends AppCompatActivity {
 
-    private Button btnAddViagem;
-    private Button btnPularEtapa;
+    private Button btnPularEtapa, btnAddViagem;
+    private EditText txtCustoPessoa, txtAluguelVeiculo, txtTotal;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tarifa_aerea);
+
+        txtCustoPessoa = findViewById(R.id.txtCustoPessoa);
+        txtAluguelVeiculo = findViewById(R.id.txtAluguelVeiculo);
+        txtTotal = findViewById(R.id.txtTotal);
 
         btnAddViagem = findViewById(R.id.btnAddViagem);
         btnAddViagem.setOnClickListener(new View.OnClickListener() {

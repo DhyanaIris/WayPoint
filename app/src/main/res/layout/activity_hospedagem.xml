@@ -43,6 +43,7 @@
             android:text="Custo por Noite " />
 
         <EditText
+            android:id="@+id/txtCustoNoite"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColorHint="@color/hintGray"
@@ -56,6 +57,7 @@
             android:text="Total de Noites" />
 
         <EditText
+            android:id="@+id/txtTotalNoites"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColorHint="@color/hintGray"
@@ -69,6 +71,7 @@
             android:text="Total de Quartos" />
 
         <EditText
+            android:id="@+id/txtTotalQuartos"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColorHint="@color/hintGray"
@@ -82,6 +85,7 @@
             android:text="Total" />
 
         <EditText
+            android:id="@+id/txtTotal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColorHint="@color/hintGray"/>
