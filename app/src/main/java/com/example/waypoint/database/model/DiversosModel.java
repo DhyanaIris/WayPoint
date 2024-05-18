@@ -8,6 +8,7 @@ public class DiversosModel {
             COLUNA_ID = "_id",
             COLUNA_NOME_LOCAL = "nome_local",
             COLUNA_CUSTO = "custo",
+            COLUNA_TOTAL = "total",
             COLUNA_ID_USUARIO = "id_usuario",
             COLUNA_ID_VIAGEM = "id_viagem";
 
@@ -18,6 +19,7 @@ public class DiversosModel {
                     + COLUNA_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + COLUNA_NOME_LOCAL+" TEXT NOT NULL, "
                     + COLUNA_CUSTO+" FLOAT NOT NULL, "
+//                    + COLUNA_TOTAL+" FLOAT NOT NULL, "
                     + COLUNA_ID_USUARIO+" INTEGER, "
                     + COLUNA_ID_VIAGEM+" INTEGER, "
                     + " FOREIGN KEY (" + COLUNA_ID_USUARIO + ") REFERENCES " + UsuarioModel.TABELA_NOME + "(" + UsuarioModel.COLUNA_ID + "), "
@@ -31,6 +33,7 @@ public class DiversosModel {
     private long id;
     private String nomeLocal;
     private float custo;
+//    private float total;
     private long idUsuario;
     private long idViagem;
 
@@ -57,6 +60,14 @@ public class DiversosModel {
     public void setCusto(float custo) {
         this.custo = custo;
     }
+
+//    public float getTotal() {
+//        return total;
+//    }
+//
+//    public void setTotal(float total) {
+//        this.total = total;
+//    }
 
     public long getIdUsuario() {
         return idUsuario;

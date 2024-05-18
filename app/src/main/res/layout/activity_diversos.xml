@@ -49,10 +49,11 @@
             android:text="Local Visitado" />
 
         <EditText
+            android:id="@+id/txtNomeLocal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColorHint="@color/hintGray"
-            android:hint="Informe o nome do lugar" />
+            android:hint="Informe o nome do local" />
 
         <TextView
             android:layout_width="match_parent"
@@ -62,13 +63,36 @@
             android:text="Custo" />
 
         <EditText
+            android:id="@+id/txtCusto"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColorHint="@color/hintGray"
-            android:hint="Informe ao custo da atividade" />
-
+            android:hint="Informe o custo da atividade" />
 
     </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="60dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="Total" />
+
+            <EditText
+                android:id="@+id/txtTotal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColorHint="@color/hintGray" />
+        </LinearLayout>
+
 
     <Button
         android:id="@+id/btnNovoCampo"
