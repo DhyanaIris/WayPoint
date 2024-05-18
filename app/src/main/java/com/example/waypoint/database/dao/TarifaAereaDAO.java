@@ -126,4 +126,40 @@ public class TarifaAereaDAO extends AbstrataDAO {
 
         return listaTarifaAerea;
     }
+
+    public ArrayList<TarifaAereaModel> selectByViagemId(long idViagem) {
+
+        Open();
+
+        ArrayList<TarifaAereaModel> listaTarifaAerea = new ArrayList<>();
+
+        Cursor c = db.query(
+                TarifaAereaModel.TABELA_NOME,
+                colunas,
+                TarifaAereaModel.COLUNA_ID_VIAGEM + " = ?",
+                new String[]{String.valueOf(idViagem)},
+                null,
+                null,
+                null
+        );
+
+        if (c.moveToFirst()) {
+            while (!c.isAfterLast()) {
+                TarifaAereaModel tarifaAereaModel = new TarifaAereaModel();
+                tarifaAereaModel.setId(c.getInt(0));
+                tarifaAereaModel.setCustoPessoa(c.getFloat(1));
+                tarifaAereaModel.setAluguelVeiculo(c.getFloat(2));
+                tarifaAereaModel.setTotal(c.getFloat(3));
+                tarifaAereaModel.setIdUsuario(c.getInt(4));
+                tarifaAereaModel.setIdViagem(c.getInt(5));
+                listaTarifaAerea.add(tarifaAereaModel);
+                c.moveToNext();
+            }
+        }
+
+        c.close();
+        Close();
+
+        return listaTarifaAerea;
+    }
 }

@@ -125,4 +125,40 @@ public class RefeicoesDAO extends AbstrataDAO {
 
         return listaRefeicoes;
     }
+
+    public ArrayList<RefeicoesModel> selectByViagemId(long idViagem) {
+
+        Open();
+
+        ArrayList<RefeicoesModel> listaRefeicoes = new ArrayList<>();
+
+        Cursor c = db.query(
+                RefeicoesModel.TABELA_NOME,
+                colunas,
+                RefeicoesModel.COLUNA_ID_VIAGEM + " = ?",
+                new String[]{String.valueOf(idViagem)},
+                null,
+                null,
+                null
+        );
+
+        if (c.moveToFirst()) {
+            while (!c.isAfterLast()) {
+                RefeicoesModel refeicoesModel = new RefeicoesModel();
+                refeicoesModel.setId(c.getInt(0));
+                refeicoesModel.setCustoRefeicao(c.getFloat(1));
+                refeicoesModel.setRefeicoesDia(c.getFloat(2));
+                refeicoesModel.setTotal(c.getFloat(3));
+                refeicoesModel.setIdUsuario(c.getInt(4));
+                refeicoesModel.setIdViagem(c.getInt(5));
+                listaRefeicoes.add(refeicoesModel);
+                c.moveToNext();
+            }
+        }
+
+        c.close();
+        Close();
+
+        return listaRefeicoes;
+    }
 }

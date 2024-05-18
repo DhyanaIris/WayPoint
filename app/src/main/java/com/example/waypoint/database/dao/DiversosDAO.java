@@ -123,4 +123,39 @@ public class DiversosDAO extends AbstrataDAO {
 
         return listaDiversos;
     }
+
+    public ArrayList<DiversosModel> selectByViagemId(long idViagem) {
+
+        Open();
+
+        ArrayList<DiversosModel> listaDiversos = new ArrayList<>();
+
+        Cursor c = db.query(
+                DiversosModel.TABELA_NOME,
+                colunas,
+                DiversosModel.COLUNA_ID_VIAGEM + " = ?",
+                new String[]{String.valueOf(idViagem)},
+                null,
+                null,
+                null
+        );
+
+        if (c.moveToFirst()) {
+            while (!c.isAfterLast()) {
+                DiversosModel diversosModel = new DiversosModel();
+                diversosModel.setId(c.getInt(0));
+                diversosModel.setNomeLocal(c.getString(1));
+                diversosModel.setCusto(c.getFloat(2));
+                diversosModel.setIdUsuario(c.getInt(3));
+                diversosModel.setIdViagem(c.getInt(4));
+                listaDiversos.add(diversosModel);
+                c.moveToNext();
+            }
+        }
+
+        c.close();
+        Close();
+
+        return listaDiversos;
+    }
 }

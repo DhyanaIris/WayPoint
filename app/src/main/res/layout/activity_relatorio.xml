@@ -43,6 +43,7 @@
             android:text="Total de Viajantes" />
 
         <EditText
+            android:id="@+id/txtTotalViajantes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/hintGray"
@@ -58,6 +59,7 @@
             android:text="Duração da Viagem" />
 
         <EditText
+            android:id="@+id/txtDuracaoViagem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/hintGray"
@@ -73,6 +75,7 @@
             android:text="Custo Total da Viagem" />
 
         <EditText
+            android:id="@+id/txtCustoTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/hintGray"
@@ -88,6 +91,7 @@
             android:text="Custo por Pessoa" />
 
         <EditText
+            android:id="@+id/txtCustoPessoa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/hintGray"
@@ -103,6 +107,7 @@
             android:text="Destinação" />
 
         <EditText
+            android:id="@+id/txtDetinacao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"

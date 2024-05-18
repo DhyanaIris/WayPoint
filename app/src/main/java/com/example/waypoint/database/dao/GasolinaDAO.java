@@ -122,12 +122,51 @@ public class GasolinaDAO extends AbstrataDAO{
             gasolinaModel.setMediaKmLitro(c.getFloat(2));
             gasolinaModel.setCustoLitro(c.getFloat(3));
             gasolinaModel.setTotalVeiculos(c.getFloat(4));
-            gasolinaModel.setIdUsuario(c.getInt(5));
-            gasolinaModel.setIdViagem(c.getInt(6));
+            gasolinaModel.setTotal(c.getFloat(5));
+            gasolinaModel.setIdUsuario(c.getInt(6));
+            gasolinaModel.setIdViagem(c.getInt(7));
             listaGasolina.add(gasolinaModel);
             c.moveToNext();
         }
 
+        Close();
+
+        return listaGasolina;
+    }
+
+    public ArrayList<GasolinaModel> selectByViagemId(long idViagem) {
+
+        Open();
+
+        ArrayList<GasolinaModel> listaGasolina = new ArrayList<>();
+
+        Cursor c = db.query(
+                GasolinaModel.TABELA_NOME,
+                colunas,
+                GasolinaModel.COLUNA_ID_VIAGEM + " = ?",
+                new String[]{String.valueOf(idViagem)},
+                null,
+                null,
+                null
+        );
+
+        if (c.moveToFirst()) {
+            while (!c.isAfterLast()) {
+                GasolinaModel gasolinaModel = new GasolinaModel();
+                gasolinaModel.setId(c.getInt(0));
+                gasolinaModel.setKmTotal(c.getFloat(1));
+                gasolinaModel.setMediaKmLitro(c.getFloat(2));
+                gasolinaModel.setCustoLitro(c.getFloat(3));
+                gasolinaModel.setTotalVeiculos(c.getFloat(4));
+                gasolinaModel.setTotal(c.getFloat(5));
+                gasolinaModel.setIdUsuario(c.getInt(6));
+                gasolinaModel.setIdViagem(c.getInt(7));
+                listaGasolina.add(gasolinaModel);
+                c.moveToNext();
+            }
+        }
+
+        c.close();
         Close();
 
         return listaGasolina;

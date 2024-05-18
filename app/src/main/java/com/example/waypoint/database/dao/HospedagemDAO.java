@@ -119,12 +119,50 @@ public class HospedagemDAO extends AbstrataDAO {
             hospedagemModel.setCustoMedio(c.getFloat(1));
             hospedagemModel.setTotalNoites(c.getFloat(2));
             hospedagemModel.setTotalQuartos(c.getFloat(3));
-            hospedagemModel.setIdUsuario(c.getInt(4));
-            hospedagemModel.setIdViagem(c.getInt(5));
+            hospedagemModel.setTotal(c.getFloat(4));
+            hospedagemModel.setIdUsuario(c.getInt(5));
+            hospedagemModel.setIdViagem(c.getInt(6));
             listaHospedagem.add(hospedagemModel);
             c.moveToNext();
         }
 
+        Close();
+
+        return listaHospedagem;
+    }
+
+    public ArrayList<HospedagemModel> selectByViagemId(long idViagem) {
+
+        Open();
+
+        ArrayList<HospedagemModel> listaHospedagem = new ArrayList<>();
+
+        Cursor c = db.query(
+                HospedagemModel.TABELA_NOME,
+                colunas,
+                HospedagemModel.COLUNA_ID_VIAGEM + " = ?",
+                new String[]{String.valueOf(idViagem)},
+                null,
+                null,
+                null
+        );
+
+        if (c.moveToFirst()) {
+            while (!c.isAfterLast()) {
+                HospedagemModel hospedagemModel = new HospedagemModel();
+                hospedagemModel.setId(c.getInt(0));
+                hospedagemModel.setCustoMedio(c.getFloat(1));
+                hospedagemModel.setTotalNoites(c.getFloat(2));
+                hospedagemModel.setTotalQuartos(c.getFloat(3));
+                hospedagemModel.setTotal(c.getFloat(4));
+                hospedagemModel.setIdUsuario(c.getInt(5));
+                hospedagemModel.setIdViagem(c.getInt(6));
+                listaHospedagem.add(hospedagemModel);
+                c.moveToNext();
+            }
+        }
+
+        c.close();
         Close();
 
         return listaHospedagem;

@@ -7,79 +7,93 @@
     android:background="@drawable/background"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
-
-        <TextView
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:background="@drawable/rounded"
-            android:padding="15dp"
-            android:layout_marginTop="20dp"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:textColor="@color/orange"
-            android:text="Viagens"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:layout_gravity="bottom"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:padding="20dp"
-            android:background="@drawable/rounded"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:textSize="26sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded"
+                    android:padding="15dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="32sp"
                     android:textStyle="bold"
-                    android:text="Viagem - 1" />
+                    android:textColor="@color/orange"
+                    android:text="Viagens"/>
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:textColorHint="@color/hintGray"
-                    android:hint="Total: R$" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/containerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:background="@drawable/logo_viagem" />
+                        <LinearLayout
+                            android:layout_width="350dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="50dp"
+                            android:padding="20dp"
+                            android:background="@drawable/rounded"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="230dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="26sp"
+                                    android:textStyle="bold"
+                                    android:text="Viagem - 1" />
+
+                                <EditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:textColorHint="@color/hintGray"
+                                    android:hint="Total: R$" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="75dp"
+                                android:layout_height="75dp"
+                                android:background="@drawable/logo_viagem" />
+
+                        </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnNovaViagem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:backgroundTint="@color/blueGray"
+                    android:text="Nova Viagem"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnNovaViagem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="@color/blueGray"
-            android:textSize="20sp"
-            android:text="Nova Viagem" />
-
-    </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

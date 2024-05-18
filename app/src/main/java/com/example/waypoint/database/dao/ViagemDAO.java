@@ -13,6 +13,7 @@ public class ViagemDAO extends AbstrataDAO {
 
     private final String[] colunas = {
             ViagemModel.COLUNA_ID,
+            ViagemModel.COLUNA_TOTAL,
             ViagemModel.COLUNA_ID_USUARIO
     };
 
@@ -20,13 +21,14 @@ public class ViagemDAO extends AbstrataDAO {
         db_helper = new DBOpenHelper(context);
     }
 
-    public long insertViagem(ViagemModel viagemModel) {
+    public long Insert(ViagemModel viagemModel) {
         long rowId = -1;
 
         try {
             Open();
 
             ContentValues values = new ContentValues();
+            values.put(ViagemModel.COLUNA_TOTAL, viagemModel.getTotal());
             values.put(ViagemModel.COLUNA_ID_USUARIO, viagemModel.getIdUsuario());
 
             rowId = db.insert(ViagemModel.TABELA_NOME, null, values);
@@ -37,7 +39,31 @@ public class ViagemDAO extends AbstrataDAO {
         return rowId;
     }
 
-    public boolean deleteViagem(long idViagem) {
+    public long Update(ViagemModel viagemModel) {
+
+        long rowId = -1;
+
+        try {
+            Open();
+
+            ContentValues values = new ContentValues();
+            values.put(ViagemModel.COLUNA_TOTAL, viagemModel.getTotal());
+
+            rowId  = db.update(
+                    ViagemModel.TABELA_NOME,
+                    values,
+                    ViagemModel.COLUNA_ID + " = ?",
+                    new String[]{String.valueOf(viagemModel.getId())}
+            );
+        }
+        finally {
+            Close();
+        }
+
+        return rowId;
+    }
+
+    public boolean Delete(long idViagem) {
         boolean isDeleted = false;
 
         try {

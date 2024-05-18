@@ -12,9 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.waypoint.database.dao.GasolinaDAO;
 import com.example.waypoint.database.dao.HospedagemDAO;
-import com.example.waypoint.database.model.GasolinaModel;
 import com.example.waypoint.database.model.HospedagemModel;
 
 public class HospedagemActivity extends AppCompatActivity {
@@ -93,7 +91,7 @@ public class HospedagemActivity extends AppCompatActivity {
         long rowId = hospedagemDAO.Insert(hospedagemModel);
 
         if (rowId != -1) {
-            Intent it = new Intent(HospedagemActivity.this, TarifaAereaActivity.class);
+            Intent it = new Intent(HospedagemActivity.this, DiversosActivity.class);
             startActivity(it);
             finish();
             Toast.makeText(HospedagemActivity.this, "Dados salvos com sucesso", Toast.LENGTH_SHORT).show();

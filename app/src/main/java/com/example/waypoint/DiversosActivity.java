@@ -161,7 +161,6 @@ public class DiversosActivity extends AppCompatActivity {
         long rowId = diversosDAO.Insert(diversosModel);
 
         if (rowId != -1) {
-            // Save dynamic entries
             for (int i = 0; i < localVisitadoEditTexts.size(); i++) {
                 String dynamicNomeLocal = localVisitadoEditTexts.get(i).getText().toString().trim();
                 String dynamicCusto = custoEditTexts.get(i).getText().toString().trim();
@@ -169,7 +168,6 @@ public class DiversosActivity extends AppCompatActivity {
                     Toast.makeText(DiversosActivity.this, "Por favor, preencha todos os campos", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
 
                 DiversosModel dynamicDiversosModel = new DiversosModel();
                 dynamicDiversosModel.setNomeLocal(dynamicNomeLocal);
