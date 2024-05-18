@@ -44,7 +44,6 @@ public class GasolinaActivity extends AppCompatActivity {
                 calcularGasolina();
             }
         };
-
         txtKmTotal.addTextChangedListener(watcher);
         txtMediaKmLitro.addTextChangedListener(watcher);
         txtCustoMedioLitro.addTextChangedListener(watcher);

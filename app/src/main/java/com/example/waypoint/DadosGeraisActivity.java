@@ -49,6 +49,7 @@ public class DadosGeraisActivity extends AppCompatActivity {
         if (nomeViagem.isEmpty() || viajantes.isEmpty() || duracao.isEmpty() || destino.isEmpty()) {
             Toast.makeText(DadosGeraisActivity.this, "Por favor, preencha todos os campos", Toast.LENGTH_SHORT).show();
         }
+
         DadosGeraisModel dadosGeraisModel = new DadosGeraisModel();
         dadosGeraisModel.setNomeViagem(nomeViagem);
         dadosGeraisModel.setViajantes(Float.parseFloat(viajantes));
@@ -58,6 +59,11 @@ public class DadosGeraisActivity extends AppCompatActivity {
         dadosGeraisModel.setIdViagem(MyApplication.getInstance().getIdViagemAtual());
 
         long rowId = dadosGeraisDAO.Insert(dadosGeraisModel);
+
+        float totalViajantes = Float.parseFloat(viajantes);
+        float duracaoViagem = Float.parseFloat(duracao);
+        MyApplication.getInstance().setTotalViajantes(totalViajantes);
+        MyApplication.getInstance().setDuracaoViagem(duracaoViagem);
 
         if (rowId != -1) {
             // Dados salvos com sucesso
