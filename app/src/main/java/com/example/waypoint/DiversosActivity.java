@@ -43,7 +43,7 @@ public class DiversosActivity extends AppCompatActivity {
 
         containerLayout = findViewById(R.id.containerLayout);
 
-        localVisitadoEditTexts = new ArrayList<>(); // Initialize the lists
+        localVisitadoEditTexts = new ArrayList<>();
         custoEditTexts = new ArrayList<>();
 
         btnNovoCampo = findViewById(R.id.btnNovoCampo);
@@ -93,11 +93,11 @@ public class DiversosActivity extends AppCompatActivity {
         LinearLayout.LayoutParams labelParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        labelParams.setMargins(0, 120, 0, 0); // Setting top margin
+        labelParams.setMargins(0, 120, 0, 0);
         localVisitadoLabel.setLayoutParams(labelParams);
         localVisitadoLabel.setText("Local Visitado");
-        localVisitadoLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18); // Set font size
-        localVisitadoLabel.setTypeface(null, Typeface.BOLD); // Set bold
+        localVisitadoLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        localVisitadoLabel.setTypeface(null, Typeface.BOLD);
         containerLayout.addView(localVisitadoLabel);
 
         EditText localVisitadoEditText = new EditText(this);
@@ -173,7 +173,7 @@ public class DiversosActivity extends AppCompatActivity {
 
                 DiversosModel dynamicDiversosModel = new DiversosModel();
                 dynamicDiversosModel.setNomeLocal(dynamicNomeLocal);
-                dynamicDiversosModel.setCusto(Float.parseFloat(dynamicCusto)); // Set the custo value for dynamic entries
+                dynamicDiversosModel.setCusto(Float.parseFloat(dynamicCusto));
                 dynamicDiversosModel.setIdUsuario(MyApplication.getInstance().getIdUsuarioLogado());
                 dynamicDiversosModel.setIdViagem(MyApplication.getInstance().getIdViagemAtual());
 
