@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -63,8 +64,18 @@ public class ListaViagensActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
-    }
 
+        OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(ListaViagensActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this,onBackPressedCallback);
+    }
 
     private void criarLayoutsViagens(ArrayList<ViagemModel> listaViagens) {
         long idUsuarioLogado = MyApplication.getInstance().getIdUsuarioLogado(); // Obtendo id do usuário logado
