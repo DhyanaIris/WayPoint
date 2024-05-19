@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.waypoint.database.dao.HospedagemDAO;
 import com.example.waypoint.database.model.HospedagemModel;
 
+import java.util.Locale;
+
 public class HospedagemActivity extends AppCompatActivity {
 
     private HospedagemDAO hospedagemDAO;
@@ -108,7 +110,8 @@ public class HospedagemActivity extends AppCompatActivity {
 
 
             if (custoNoite.isEmpty() || totalNoites.isEmpty() || totalQuartos.isEmpty()) {
-                return 0.0f;
+                txtTotal.setText("0");
+                return 0;
             }
 
             float custoMedioFloat = Float.parseFloat(custoNoite);
@@ -116,7 +119,8 @@ public class HospedagemActivity extends AppCompatActivity {
             float totalQuartosFloat = Float.parseFloat(totalQuartos);
 
             float total = (custoMedioFloat * totalNoitesFloat) * totalQuartosFloat;
-            txtTotal.setText(String.valueOf(total));
+            String textoFormatado = String.format(Locale.getDefault(), "%.2f", total);
+            txtTotal.setText(textoFormatado);
             return total;
         } catch (NumberFormatException e) {
             txtTotal.setText("Valor Inválido");

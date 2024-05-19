@@ -52,6 +52,7 @@
             android:id="@+id/txtNomeLocal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:singleLine="true"
             android:textColorHint="@color/hintGray"
             android:hint="Informe o nome do local" />
 
@@ -66,6 +67,8 @@
             android:id="@+id/txtCusto"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
             android:textColorHint="@color/hintGray"
             android:hint="Informe o custo da atividade" />
 
@@ -90,6 +93,9 @@
                 android:id="@+id/txtTotal"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:inputType="none"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:textColorHint="@color/hintGray" />
         </LinearLayout>
 
@@ -109,7 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="95dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="@color/orange"
         android:textSize="16sp"
         android:text="Adicionar à Viagem" />

@@ -66,13 +66,11 @@ public class DadosGeraisActivity extends AppCompatActivity {
         MyApplication.getInstance().setDuracaoViagem(duracaoViagem);
 
         if (rowId != -1) {
-            // Dados salvos com sucesso
             Intent it = new Intent(DadosGeraisActivity.this, GasolinaActivity.class);
             startActivity(it);
             finish();
             Toast.makeText(DadosGeraisActivity.this, "Dados salvos com sucesso", Toast.LENGTH_SHORT).show();
         } else {
-            // Ocorreu um erro ao salvar os dados
             Toast.makeText(DadosGeraisActivity.this, "Erro ao salvar os dados", Toast.LENGTH_SHORT).show();
         }
 

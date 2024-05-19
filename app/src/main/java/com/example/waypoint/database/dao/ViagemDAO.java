@@ -40,7 +40,6 @@ public class ViagemDAO extends AbstrataDAO {
     }
 
     public long Update(ViagemModel viagemModel) {
-
         long rowId = -1;
 
         try {
@@ -49,14 +48,13 @@ public class ViagemDAO extends AbstrataDAO {
             ContentValues values = new ContentValues();
             values.put(ViagemModel.COLUNA_TOTAL, viagemModel.getTotal());
 
-            rowId  = db.update(
+            rowId = db.update(
                     ViagemModel.TABELA_NOME,
                     values,
                     ViagemModel.COLUNA_ID + " = ?",
                     new String[]{String.valueOf(viagemModel.getId())}
             );
-        }
-        finally {
+        } finally {
             Close();
         }
 
@@ -96,6 +94,7 @@ public class ViagemDAO extends AbstrataDAO {
                 do {
                     ViagemModel viagem = new ViagemModel();
                     viagem.setId(cursor.getLong(cursor.getColumnIndexOrThrow(ViagemModel.COLUNA_ID)));
+                    viagem.setTotal(cursor.getFloat(cursor.getColumnIndexOrThrow(ViagemModel.COLUNA_TOTAL)));
                     viagem.setIdUsuario(cursor.getLong(cursor.getColumnIndexOrThrow(ViagemModel.COLUNA_ID_USUARIO)));
                     listaViagens.add(viagem);
                 } while (cursor.moveToNext());

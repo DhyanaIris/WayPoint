@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.waypoint.database.dao.TarifaAereaDAO;
 import com.example.waypoint.database.model.TarifaAereaModel;
 
+import java.util.Locale;
+
 public class TarifaAereaActivity extends AppCompatActivity {
 
     private TarifaAereaDAO tarifaAereaDAO;
@@ -99,7 +101,8 @@ public class TarifaAereaActivity extends AppCompatActivity {
             String aluguelVeiculo = String.valueOf(txtAluguelVeiculo.getText()).trim();
 
             if (custoPessoa.isEmpty() || aluguelVeiculo.isEmpty()) {
-                return 0.0f;
+                txtTotal.setText("0");
+                return 0;
             }
 
             float custoPessoaFloat = Float.parseFloat(custoPessoa);
@@ -107,7 +110,8 @@ public class TarifaAereaActivity extends AppCompatActivity {
             float viajantes = MyApplication.getInstance().getTotalViajantes();
 
             float total = (custoPessoaFloat * viajantes) + aluguelVeiculoFloat;
-            txtTotal.setText(String.valueOf(total));
+            String textoFormatado = String.format(Locale.getDefault(), "%.2f", total);
+            txtTotal.setText(textoFormatado);
             return total;
         } catch (NumberFormatException e) {
             txtTotal.setText("Valor Inválido");

@@ -46,6 +46,8 @@
             android:id="@+id/txtCustoMedio"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
             android:textColorHint="@color/hintGray"
             android:hint="Custo médio por noite" />
 
@@ -60,6 +62,8 @@
             android:id="@+id/txtTotalNoites"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
             android:textColorHint="@color/hintGray"
             android:hint="Informe a quantidade de noites" />
 
@@ -74,6 +78,8 @@
             android:id="@+id/txtTotalQuartos"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
             android:textColorHint="@color/hintGray"
             android:hint="Informe a quantidade de quartos" />
 
@@ -88,6 +94,9 @@
             android:id="@+id/txtTotal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:inputType="none"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:textColorHint="@color/hintGray"/>
 
     </LinearLayout>

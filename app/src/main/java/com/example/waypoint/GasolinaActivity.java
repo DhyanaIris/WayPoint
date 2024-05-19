@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.waypoint.database.dao.GasolinaDAO;
 import com.example.waypoint.database.model.GasolinaModel;
 
+import java.util.Locale;
+
 public class GasolinaActivity extends AppCompatActivity {
 
     private GasolinaDAO gasolinaDAO;
@@ -109,7 +111,8 @@ public class GasolinaActivity extends AppCompatActivity {
             String totalVeiculo = String.valueOf(txtTotalVeiculos.getText()).trim();
 
             if (kmTotal.isEmpty() || mediaKm.isEmpty() || custoMedioLitro.isEmpty() || totalVeiculo.isEmpty()) {
-                return 0.0f;
+                txtTotal.setText("0");
+                return 0;
             }
 
             float kmTotalFloat = Float.parseFloat(kmTotal);
@@ -118,7 +121,8 @@ public class GasolinaActivity extends AppCompatActivity {
             float totalVeiculoFloat = Float.parseFloat(totalVeiculo);
 
             float total = ((kmTotalFloat / mediaKmFloat) * custoMedioLitroFloat) / totalVeiculoFloat;
-            txtTotal.setText(String.valueOf(total));
+            String textoFormatado = String.format(Locale.getDefault(), "%.2f", total);
+            txtTotal.setText(textoFormatado);
             return total;
         } catch (NumberFormatException e) {
             txtTotal.setText("Valor Inválido");

@@ -25,6 +25,7 @@ import com.example.waypoint.database.model.TarifaAereaModel;
 import com.example.waypoint.database.model.ViagemModel;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class RelatorioActivity extends AppCompatActivity {
 
@@ -113,10 +114,13 @@ public class RelatorioActivity extends AppCompatActivity {
         
         total = totalGasolina + totalTarifa + totalRefeicao + totalHospedagem + totalDiversos;
         custoPessoa = total / viajantes;
-        txtCustoTotal.setText(String.valueOf(total));
-        txtCustoPessoa.setText(String.valueOf(custoPessoa));
+        String totalFormatado = String.format(Locale.getDefault(), "%.2f", total);
+        String custoPessoaFormatado = String.format(Locale.getDefault(), "%.2f", custoPessoa);
+        txtCustoTotal.setText(totalFormatado);
+        txtCustoPessoa.setText(custoPessoaFormatado);
 
         ViagemModel viagemModel = new ViagemModel();
+        viagemModel.setId(idViagem);
         viagemModel.setTotal(total);
         viagemDAO.Update(viagemModel);
         

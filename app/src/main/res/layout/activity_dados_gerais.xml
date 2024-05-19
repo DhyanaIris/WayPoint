@@ -44,6 +44,7 @@
                 android:id="@+id/txtNomeViagem"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:singleLine="true"
                 android:textColorHint="@color/hintGray"
                 android:hint="Informe um nome a sua viagem" />
 
@@ -58,6 +59,8 @@
                 android:id="@+id/txtViajantes"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:singleLine="true"
+                android:inputType="numberDecimal"
                 android:textColorHint="@color/hintGray"
                 android:hint="Número total de viajantes" />
 
@@ -73,8 +76,10 @@
                 android:id="@+id/txtDuracao"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:singleLine="true"
+                android:inputType="numberDecimal"
                 android:textColorHint="@color/hintGray"
-                android:hint="Duração da viagem em horas" />
+                android:hint="Duração da viagem em dias" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -88,6 +93,7 @@
                 android:id="@+id/txtDestino"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:singleLine="true"
                 android:textColorHint="@color/hintGray"
                 android:hint="Informe seu destino" />
 

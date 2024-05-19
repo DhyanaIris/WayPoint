@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.waypoint.database.dao.RefeicoesDAO;
 import com.example.waypoint.database.model.RefeicoesModel;
 
+import java.util.Locale;
+
 public class RefeicoesActivity extends AppCompatActivity {
 
     private RefeicoesDAO refeicoesDAO;
@@ -99,7 +101,8 @@ public class RefeicoesActivity extends AppCompatActivity {
             String refeicoesDia = String.valueOf(txtRefeicoesDia.getText()).trim();
 
             if (custoRefeicao.isEmpty() || refeicoesDia.isEmpty()) {
-                return 0.0f;
+                txtTotal.setText("0");
+                return 0;
             }
 
             float custoRefeicaoFloat = Float.parseFloat(custoRefeicao);
@@ -108,7 +111,8 @@ public class RefeicoesActivity extends AppCompatActivity {
             float duracao = MyApplication.getInstance().getDuracaoViagem();
 
             float total = ((refeicoesDiaFloat * viajantes) * custoRefeicaoFloat) * duracao;
-            txtTotal.setText(String.valueOf(total));
+            String textoFormatado = String.format(Locale.getDefault(), "%.2f", total);
+            txtTotal.setText(textoFormatado);
             return total;
         } catch (NumberFormatException e) {
             txtTotal.setText("Valor Inválido");

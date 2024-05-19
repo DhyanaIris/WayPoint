@@ -46,6 +46,8 @@
             android:id="@+id/txtCustoPessoa"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
             android:textColorHint="@color/hintGray"
             android:hint="Custo estimado por pessoa" />
 
@@ -60,6 +62,8 @@
             android:id="@+id/txtAluguelVeiculo"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
             android:textColorHint="@color/hintGray"
             android:hint="Custo do aluguel de veículo" />
 
@@ -74,6 +78,9 @@
             android:id="@+id/txtTotal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:inputType="none"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:textColorHint="@color/hintGray"/>
 
     </LinearLayout>

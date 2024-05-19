@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.example.waypoint.database.model.DadosGeraisModel;
 import com.example.waypoint.database.model.ViagemModel;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class ListaViagensActivity extends AppCompatActivity {
 
@@ -65,14 +67,24 @@ public class ListaViagensActivity extends AppCompatActivity {
 
 
     private void criarLayoutsViagens(ArrayList<ViagemModel> listaViagens) {
-        idViagemAtual = MyApplication.getInstance().getIdViagemAtual();
+        long idUsuarioLogado = MyApplication.getInstance().getIdUsuarioLogado(); // Obtendo id do usuário logado
         ArrayList<DadosGeraisModel> listaDadosGerais = dadosGeraisDAO.selectAll(idUsuarioLogado);
-
-        String destino = null;
 
         containerLayout = findViewById(R.id.containerLayout);
 
         for (ViagemModel viagemModel : listaViagens) {
+            DadosGeraisModel dadosGeraisModel = null;
+            for (DadosGeraisModel dados : listaDadosGerais) {
+                if (dados.getIdViagem() == viagemModel.getId()) {
+                    dadosGeraisModel = dados;
+                    break;
+                }
+            }
+
+            String nomeViagem = (dadosGeraisModel != null) ? dadosGeraisModel.getNomeViagem() : "Desconhecido";
+
+            float totalViagem = viagemModel.getTotal();
+
             LinearLayout outerLayout = new LinearLayout(this);
             LinearLayout.LayoutParams outerParams = new LinearLayout.LayoutParams(
                     dpToPx(this, 350),
@@ -94,10 +106,6 @@ public class ListaViagensActivity extends AppCompatActivity {
             innerLayout.setLayoutParams(innerParams);
             innerLayout.setOrientation(LinearLayout.VERTICAL);
 
-            if (!listaDadosGerais.isEmpty()) {
-                DadosGeraisModel dadosGeraisModel = listaDadosGerais.get(0);
-                destino = String.valueOf(dadosGeraisModel.getNomeViagem());
-            }
             TextView textView = new TextView(this);
             LinearLayout.LayoutParams textViewParams = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -106,8 +114,7 @@ public class ListaViagensActivity extends AppCompatActivity {
             textView.setLayoutParams(textViewParams);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 26);
             textView.setTypeface(null, Typeface.BOLD);
-            String textoViagem = "Viagem - " + destino;
-            textView.setText(textoViagem);
+            textView.setText(nomeViagem);
 
             EditText editText = new EditText(this);
             LinearLayout.LayoutParams editTextParams = new LinearLayout.LayoutParams(
@@ -115,10 +122,12 @@ public class ListaViagensActivity extends AppCompatActivity {
                     dpToPx(this, 50)
             );
             editText.setLayoutParams(editTextParams);
-            editText.setHint("Total: R$");
             editText.setHintTextColor(ContextCompat.getColor(this, R.color.hintGray));
-            String totalViagem = String.valueOf(viagemModel.getTotal());
-            editText.setText(totalViagem);
+            String textoTotal = String.format(Locale.getDefault(), "Total: R$ %.2f", totalViagem);
+            editText.setText((textoTotal));
+            editText.setFocusable(false);
+            editText.setClickable(false);
+            editText.setInputType(InputType.TYPE_NULL);
 
             innerLayout.addView(textView);
             innerLayout.addView(editText);
@@ -143,3 +152,4 @@ public class ListaViagensActivity extends AppCompatActivity {
         return Math.round(dp * density);
     }
 }
+

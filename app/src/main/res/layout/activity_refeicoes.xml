@@ -46,6 +46,8 @@
             android:id="@+id/txtCustoRefeicao"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
             android:textColorHint="@color/hintGray"
             android:hint="Informe o custo por refeição" />
 
@@ -60,6 +62,8 @@
             android:id="@+id/txtRefeicoesDia"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
             android:textColorHint="@color/hintGray"
             android:hint="Quantidade de refeições por dia" />
 
@@ -74,6 +78,9 @@
             android:id="@+id/txtTotal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:inputType="none"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:textColorHint="@color/hintGray"/>
 
     </LinearLayout>

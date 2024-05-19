@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.View;
@@ -105,6 +106,7 @@ public class DiversosActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         localVisitadoEditText.setHint("Informe o nome do local");
+        localVisitadoEditText.setSingleLine(true);
         containerLayout.addView(localVisitadoEditText);
         localVisitadoEditTexts.add(localVisitadoEditText);
 
@@ -122,6 +124,8 @@ public class DiversosActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         custoEditText.setHint("Informe o custo da atividade");
+        custoEditText.setSingleLine(true);
+        custoEditText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         containerLayout.addView(custoEditText);
         custoEditTexts.add(custoEditText);
 
@@ -193,7 +197,7 @@ public class DiversosActivity extends AppCompatActivity {
 
     private void calcularTotal() {
         try {
-            float total = 0.0f;
+            float total = 0;
 
             String custoStr = txtCusto.getText().toString().trim();
             if (!custoStr.isEmpty()) {
