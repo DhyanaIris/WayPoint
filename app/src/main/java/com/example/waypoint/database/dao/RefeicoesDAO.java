@@ -92,6 +92,20 @@ public class RefeicoesDAO extends AbstrataDAO {
         return rowId;
     }
 
+    public boolean DeleteById(long idViagem) {
+        try {
+            Open();
+            int rowsAffected = db.delete(
+                    RefeicoesModel.TABELA_NOME,
+                    RefeicoesModel.COLUNA_ID_VIAGEM + " = ?",
+                    new String[]{String.valueOf(idViagem)}
+            );
+            return rowsAffected > 0;
+        } finally {
+            Close();
+        }
+    }
+
     public ArrayList<RefeicoesModel> selectAll(long idUsuario) {
 
         Open();

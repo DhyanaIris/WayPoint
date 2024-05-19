@@ -96,6 +96,20 @@ public class HospedagemDAO extends AbstrataDAO {
         return rowId;
     }
 
+    public boolean DeleteById(long idViagem) {
+        try {
+            Open();
+            int rowsAffected = db.delete(
+                    HospedagemModel.TABELA_NOME,
+                    HospedagemModel.COLUNA_ID_VIAGEM + " = ?",
+                    new String[]{String.valueOf(idViagem)}
+            );
+            return rowsAffected > 0;
+        } finally {
+            Close();
+        }
+    }
+
     public ArrayList<HospedagemModel> selectAll(long idUsuario) {
 
         Open();

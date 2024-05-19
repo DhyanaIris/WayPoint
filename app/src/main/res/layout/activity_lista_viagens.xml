@@ -52,6 +52,7 @@
                     android:layout_marginTop="30dp"
                     android:padding="10dp"
                     android:backgroundTint="@color/orangeRed"
+                    android:textColor="@color/white"
                     android:text="Nova Viagem"
                     android:textSize="20sp" />
 

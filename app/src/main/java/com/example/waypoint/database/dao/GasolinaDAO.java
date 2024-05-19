@@ -98,6 +98,20 @@ public class GasolinaDAO extends AbstrataDAO{
         return rowId;
     }
 
+    public boolean DeleteById(long idViagem) {
+        try {
+            Open();
+            int rowsAffected = db.delete(
+                    GasolinaModel.TABELA_NOME,
+                    GasolinaModel.COLUNA_ID_VIAGEM + " = ?",
+                    new String[]{String.valueOf(idViagem)}
+            );
+            return rowsAffected > 0;
+        } finally {
+            Close();
+        }
+    }
+
     public ArrayList<GasolinaModel> selectAll(long idUsuario) {
 
         Open();

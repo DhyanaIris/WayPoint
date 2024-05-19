@@ -91,6 +91,20 @@ public class DiversosDAO extends AbstrataDAO {
         return rowId;
     }
 
+    public boolean DeleteById(long idViagem) {
+        try {
+            Open();
+            int rowsAffected = db.delete(
+                    DiversosModel.TABELA_NOME,
+                    DiversosModel.COLUNA_ID_VIAGEM + " = ?",
+                    new String[]{String.valueOf(idViagem)}
+            );
+            return rowsAffected > 0;
+        } finally {
+            Close();
+        }
+    }
+
     public ArrayList<DiversosModel> selectAll(long idUsuario) {
 
         Open();

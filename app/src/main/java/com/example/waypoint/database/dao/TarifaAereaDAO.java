@@ -93,6 +93,20 @@ public class TarifaAereaDAO extends AbstrataDAO {
         return rowId;
     }
 
+    public boolean DeleteById(long idViagem) {
+        try {
+            Open();
+            int rowsAffected = db.delete(
+                    TarifaAereaModel.TABELA_NOME,
+                    TarifaAereaModel.COLUNA_ID_VIAGEM + " = ?",
+                    new String[]{String.valueOf(idViagem)}
+            );
+            return rowsAffected > 0;
+        } finally {
+            Close();
+        }
+    }
+
     public ArrayList<TarifaAereaModel> selectAll(long idUsuario) {
 
         Open();

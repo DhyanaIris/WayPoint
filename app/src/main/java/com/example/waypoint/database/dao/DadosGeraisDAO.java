@@ -97,6 +97,20 @@ public class DadosGeraisDAO extends AbstrataDAO {
         return rowId;
     }
 
+    public boolean DeleteById(long id) {
+        try {
+            Open();
+            int rowsAffected = db.delete(
+                    DadosGeraisModel.TABELA_NOME,
+                    DadosGeraisModel.COLUNA_ID + " = ?",
+                    new String[]{String.valueOf(id)}
+            );
+            return rowsAffected > 0;
+        } finally {
+            Close();
+        }
+    }
+
     public ArrayList<DadosGeraisModel> selectAll(long idUsuario) {
 
         Open();

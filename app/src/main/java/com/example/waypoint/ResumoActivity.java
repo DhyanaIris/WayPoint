@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,12 +38,12 @@ public class ResumoActivity extends AppCompatActivity {
     private HospedagemDAO hospedagemDAO;
     private DiversosDAO diversosDAO;
     private EditText txtTotalViajantes, txtDuracaoViagem, txtCustoTotal, txtCustoPessoa, txtDetinacao;
-    private Button btnProxEtapa;
+    private Button btnProxEtapa, btnExcluir;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_relatorio);
+        setContentView(R.layout.activity_resumo);
 
         txtTotalViajantes = findViewById(R.id.txtTotalViajantes);
         txtDuracaoViagem = findViewById(R.id.txtDuracaoViagem);
@@ -63,6 +64,20 @@ public class ResumoActivity extends AppCompatActivity {
             MyApplication.getInstance().setIdViagemAtual(idViagem);
             preencherDados(idViagem);
         }
+
+        btnExcluir = findViewById(R.id.btnExcluir);
+        btnExcluir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long idViagem = getIntent().getLongExtra("idViagem", -1);
+                if (idViagem != -1) {
+                    boolean success = excluirViagem(idViagem);
+                        Intent intent = new Intent(ResumoActivity.this, ListaViagensActivity.class);
+                        startActivity(intent);
+                        finish();
+                }
+            }
+        });
 
         btnProxEtapa = findViewById(R.id.btnProxEtapa);
         btnProxEtapa.setOnClickListener(new View.OnClickListener() {
@@ -126,5 +141,17 @@ public class ResumoActivity extends AppCompatActivity {
         viagemModel.setTotal(total);
         viagemDAO.Update(viagemModel);
         
+    }
+
+    private boolean excluirViagem(long idViagem) {
+        boolean success = viagemDAO.Delete(idViagem);
+        success &= dadosGeraisDAO.DeleteById(idViagem);
+        success &= gasolinaDAO.DeleteById(idViagem);
+        success &= tarifaAereaDAO.DeleteById(idViagem);
+        success &= refeicoesDAO.DeleteById(idViagem);
+        success &= hospedagemDAO.DeleteById(idViagem);
+        success &= diversosDAO.DeleteById(idViagem);
+
+        return success;
     }
 }

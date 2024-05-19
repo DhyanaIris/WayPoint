@@ -159,7 +159,6 @@ public class ListaViagensActivity extends AppCompatActivity {
             outerLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Open RelatorioActivity and pass idViagem
                     Intent intent = new Intent(ListaViagensActivity.this, ResumoActivity.class);
                     intent.putExtra("idViagem", viagemModel.getId());
                     startActivity(intent);
