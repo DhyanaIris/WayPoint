@@ -2,6 +2,7 @@ package com.example.waypoint;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,14 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.waypoint.api.API;
+import com.example.waypoint.api.response.Aereo;
+import com.example.waypoint.api.response.Entretenimento;
+import com.example.waypoint.api.response.Gasolina;
+import com.example.waypoint.api.response.Hospedagem;
+import com.example.waypoint.api.response.Refeicao;
+import com.example.waypoint.api.response.Resposta;
+import com.example.waypoint.api.response.Viagem;
 import com.example.waypoint.database.dao.DadosGeraisDAO;
 import com.example.waypoint.database.dao.DiversosDAO;
 import com.example.waypoint.database.dao.GasolinaDAO;
@@ -26,7 +35,12 @@ import com.example.waypoint.database.model.TarifaAereaModel;
 import com.example.waypoint.database.model.ViagemModel;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ResumoActivity extends AppCompatActivity {
 
@@ -87,7 +101,19 @@ public class ResumoActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
+
+        btnPostNuvem = findViewById(R.id.btnPostNuvem);
+        btnPostNuvem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long idViagem = getIntent().getLongExtra("idViagem", -1);
+                if (idViagem != -1) {
+                    enviarViagem(idViagem);
+                }
+            }
+        });
     }
+
 
     private void preencherDados(long idViagem) {
         ArrayList<DadosGeraisModel> listaDadosGerais = dadosGeraisDAO.selectByViagemId(idViagem);
@@ -128,7 +154,7 @@ public class ResumoActivity extends AppCompatActivity {
                 totalDiversos += diversosModel.getCusto();
             }
         }
-        
+
         total = totalGasolina + totalTarifa + totalRefeicao + totalHospedagem + totalDiversos;
         custoPessoa = total / viajantes;
         String totalFormatado = String.format(Locale.getDefault(), "%.2f", total);
@@ -140,7 +166,7 @@ public class ResumoActivity extends AppCompatActivity {
         viagemModel.setId(idViagem);
         viagemModel.setTotal(total);
         viagemDAO.Update(viagemModel);
-        
+
     }
 
     private boolean excluirViagem(long idViagem) {
@@ -153,5 +179,98 @@ public class ResumoActivity extends AppCompatActivity {
         success &= diversosDAO.DeleteById(idViagem);
 
         return success;
+    }
+
+    private void enviarViagem(long idViagem) {
+        ArrayList<DadosGeraisModel> listaDadosGerais = dadosGeraisDAO.selectByViagemId(idViagem);
+        ArrayList<GasolinaModel> listaGasolina = gasolinaDAO.selectByViagemId(idViagem);
+        ArrayList<TarifaAereaModel> listaTarifaAerea = tarifaAereaDAO.selectByViagemId(idViagem);
+        ArrayList<RefeicoesModel> listaRefeicoes = refeicoesDAO.selectByViagemId(idViagem);
+        ArrayList<HospedagemModel> listaHospedagem = hospedagemDAO.selectByViagemId(idViagem);
+        ArrayList<DiversosModel> listaDiversos = diversosDAO.selectByViagemId(idViagem);
+
+        Viagem viagem = new Viagem();
+
+        if (!listaDadosGerais.isEmpty()) {
+            DadosGeraisModel dadosGeraisModel = listaDadosGerais.get(0);
+            viagem.setTotalViajante((int) dadosGeraisModel.getViajantes());
+            viagem.setDuracaoViagem((int) dadosGeraisModel.getDuracao());
+            viagem.setLocal(dadosGeraisModel.getDestino());
+            viagem.setIdConta(94737);
+        }
+
+        Gasolina gasolina = new Gasolina();
+        if (!listaGasolina.isEmpty()) {
+            GasolinaModel gasolinaModel = listaGasolina.get(0);
+            gasolina.setViagemid((int) idViagem);
+            gasolina.setTotalEstimadoKM((int) gasolinaModel.getKmTotal());
+            gasolina.setMediaKMLitro(gasolinaModel.getMediaKmLitro());
+            gasolina.setCustoMedioLitro(gasolinaModel.getCustoLitro());
+            gasolina.setTotalVeiculos((int) gasolinaModel.getTotalVeiculos());
+            gasolina.setIdConta(94737);
+            viagem.setGasolina(gasolina);
+        }
+
+        Aereo aereo = new Aereo();
+        if (!listaTarifaAerea.isEmpty()) {
+            TarifaAereaModel tarifaAereaModel = listaTarifaAerea.get(0);
+            aereo.setViagemid((int) idViagem);
+            aereo.setCustoPessoa(tarifaAereaModel.getCustoPessoa());
+            aereo.setCustoAluguelVeiculo(tarifaAereaModel.getAluguelVeiculo());
+            aereo.setIdConta(94737);
+            viagem.setAereo(aereo);
+        }
+
+        Refeicao refeicao = new Refeicao();
+        if (!listaRefeicoes.isEmpty()) {
+            RefeicoesModel refeicoesModel = listaRefeicoes.get(0);
+            refeicao.setViagemid((int) idViagem);
+            refeicao.setCustoRefeicao(refeicoesModel.getCustoRefeicao());
+            refeicao.setRefeicoesDia((int) refeicoesModel.getRefeicoesDia());
+            refeicao.setIdConta(94737);
+            viagem.setRefeicao(refeicao);
+        }
+
+        Hospedagem hospedagem = new Hospedagem();
+        if (!listaHospedagem.isEmpty()) {
+            HospedagemModel hospedagemModel = listaHospedagem.get(0);
+            hospedagem.setViagemid((int) idViagem);
+            hospedagem.setCustoMedioNoite(hospedagemModel.getCustoMedio());
+            hospedagem.setTotalNoite((int) hospedagemModel.getTotalNoites());
+            hospedagem.setTotalQuartos((int) hospedagemModel.getTotalQuartos());
+            hospedagem.setIdConta(94737);
+            viagem.setHospedagem(hospedagem);
+        }
+
+        List<Entretenimento> entretenimentoList = new ArrayList<>();
+        if (!listaDiversos.isEmpty()) {
+            for (DiversosModel diversosModel : listaDiversos) {
+                Entretenimento entretenimento = new Entretenimento();
+                entretenimento.setViagemid((int) idViagem);
+                entretenimento.setEntretenimento(diversosModel.getNomeLocal());
+                entretenimento.setValor(diversosModel.getCusto());
+                entretenimento.setIdConta(94737);
+                entretenimentoList.add(entretenimento);
+            }
+        }
+        viagem.setEntretenimentoList(entretenimentoList);
+
+        Log.d("ViagemObject", viagem.toString());
+
+//        API.postViagem(viagem, new Callback<Resposta>() {
+//            @Override
+//            public void onResponse(Call<Resposta> call, Response<Resposta> response) {
+//                if (response.isSuccessful()) {
+//                    Toast.makeText(ResumoActivity.this, "Dados enviados com sucesso!", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(ResumoActivity.this, "Falha ao enviar dados!", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Resposta> call, Throwable t) {
+//                Toast.makeText(ResumoActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 }

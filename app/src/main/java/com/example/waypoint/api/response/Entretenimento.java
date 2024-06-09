@@ -40,4 +40,14 @@ public class Entretenimento implements Serializable {
     public void setIdConta(int idConta) {
         this.idConta = idConta;
     }
+
+    @Override
+    public String toString() {
+        return "Entretenimento{" +
+                "viagemid=" + viagemid +
+                ", entretenimento='" + entretenimento + '\'' +
+                ", valor=" + valor +
+                ", idConta=" + idConta +
+                '}';
+    }
 }

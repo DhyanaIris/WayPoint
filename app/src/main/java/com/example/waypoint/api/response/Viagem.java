@@ -105,4 +105,72 @@ public class Viagem implements Serializable {
     public void setEntretenimentoList(List<Entretenimento> entretenimentoList) {
         this.entretenimentoList = entretenimentoList;
     }
+
+    @Override
+    public String toString() {
+        String gasolinaStr = gasolina != null ?
+                "Gasolina{" +
+                        "viagemid=" + gasolina.getViagemid() +
+                        ", totalEstimadoKM=" + gasolina.getTotalEstimadoKM() +
+                        ", mediaKMLitro=" + gasolina.getMediaKMLitro() +
+                        ", custoMedioLitro=" + gasolina.getCustoMedioLitro() +
+                        ", totalVeiculos=" + gasolina.getTotalVeiculos() +
+                        ", idConta=" + gasolina.getIdConta() +
+                        '}' :
+                "null";
+
+        String aereoStr = aereo != null ?
+                "Aereo{" +
+                        "viagemid=" + aereo.getViagemid() +
+                        ", custoPessoa=" + aereo.getCustoPessoa() +
+                        ", custoAluguelVeiculo=" + aereo.getCustoAluguelVeiculo() +
+                        ", idConta=" + aereo.getIdConta() +
+                        '}' :
+                "null";
+
+        String refeicaoStr = refeicao != null ?
+                "Refeicao{" +
+                        "viagemid=" + refeicao.getViagemid() +
+                        ", custoRefeicao=" + refeicao.getCustoRefeicao() +
+                        ", refeicoesDia=" + refeicao.getRefeicoesDia() +
+                        ", idConta=" + refeicao.getIdConta() +
+                        '}' :
+                "null";
+
+        String hospedagemStr = hospedagem != null ?
+                "Hospedagem{" +
+                        "viagemid=" + hospedagem.getViagemid() +
+                        ", custoMedioNoite=" + hospedagem.getCustoMedioNoite() +
+                        ", totalNoite=" + hospedagem.getTotalNoite() +
+                        ", totalQuartos=" + hospedagem.getTotalQuartos() +
+                        ", idConta=" + hospedagem.getIdConta() +
+                        '}' :
+                "null";
+
+        StringBuilder entretenimentoListStr = new StringBuilder();
+        if (entretenimentoList != null) {
+            entretenimentoListStr.append("EntretenimentoList{");
+            for (Entretenimento entretenimento : entretenimentoList) {
+                entretenimentoListStr.append(entretenimento.toString()).append(", ");
+            }
+            if (entretenimentoListStr.length() > 0) {
+                entretenimentoListStr.delete(entretenimentoListStr.length() - 2, entretenimentoListStr.length());
+            }
+            entretenimentoListStr.append('}');
+        } else {
+            entretenimentoListStr.append("null");
+        }
+
+        return "Viagem{" +
+                "totalViajante=" + totalViajante +
+                ", duracaoViagem=" + duracaoViagem +
+                ", local='" + local + '\'' +
+                ", idConta=" + idConta +
+                ", gasolina=" + gasolinaStr +
+                ", aereo=" + aereoStr +
+                ", refeicao=" + refeicaoStr +
+                ", hospedagem=" + hospedagemStr +
+                ", entretenimentoList=" + entretenimentoListStr +
+                '}';
+    }
 }
