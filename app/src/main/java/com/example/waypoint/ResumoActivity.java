@@ -38,7 +38,7 @@ public class ResumoActivity extends AppCompatActivity {
     private HospedagemDAO hospedagemDAO;
     private DiversosDAO diversosDAO;
     private EditText txtTotalViajantes, txtDuracaoViagem, txtCustoTotal, txtCustoPessoa, txtDetinacao;
-    private Button btnProxEtapa, btnExcluir;
+    private Button btnProxEtapa, btnPostNuvem, btnExcluir;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
