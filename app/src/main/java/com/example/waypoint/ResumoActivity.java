@@ -1,6 +1,7 @@
 package com.example.waypoint;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.waypoint.api.API;
@@ -35,9 +37,11 @@ import com.example.waypoint.database.model.TarifaAereaModel;
 import com.example.waypoint.database.model.ViagemModel;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,6 +57,8 @@ public class ResumoActivity extends AppCompatActivity {
     private DiversosDAO diversosDAO;
     private EditText txtTotalViajantes, txtDuracaoViagem, txtCustoTotal, txtCustoPessoa, txtDetinacao;
     private Button btnProxEtapa, btnPostNuvem, btnExcluir;
+
+    float total, custoPessoa;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -123,7 +129,7 @@ public class ResumoActivity extends AppCompatActivity {
         ArrayList<HospedagemModel> listaHospedagem = hospedagemDAO.selectByViagemId(idViagem);
         ArrayList<DiversosModel> listaDiversos = diversosDAO.selectByViagemId(idViagem);
 
-        float total, custoPessoa, viajantes = 0, totalGasolina = 0, totalTarifa = 0, totalRefeicao = 0, totalHospedagem = 0, totalDiversos = 0;
+        float viajantes = 0, totalGasolina = 0, totalTarifa = 0, totalRefeicao = 0, totalHospedagem = 0, totalDiversos = 0;
 
         if (!listaDadosGerais.isEmpty()) {
             DadosGeraisModel dadosGeraisModel = listaDadosGerais.get(0);
@@ -195,6 +201,8 @@ public class ResumoActivity extends AppCompatActivity {
             DadosGeraisModel dadosGeraisModel = listaDadosGerais.get(0);
             viagem.setTotalViajante((int) dadosGeraisModel.getViajantes());
             viagem.setDuracaoViagem((int) dadosGeraisModel.getDuracao());
+            viagem.setCustoTotalViagem(total);
+            viagem.setCustoPorPessoa(custoPessoa);
             viagem.setLocal(dadosGeraisModel.getDestino());
             viagem.setIdConta(94737);
         }
@@ -270,6 +278,45 @@ public class ResumoActivity extends AppCompatActivity {
 //            @Override
 //            public void onFailure(Call<Resposta> call, Throwable t) {
 //                Toast.makeText(ResumoActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+
+//        SweetAlertDialog pDialog = new SweetAlertDialog(ResumoActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+//        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+//        pDialog.setTitleText("Aguarde");
+//        pDialog.setContentText("Enviando dados ao servidor ...");
+//        pDialog.setCancelable(false);
+//        pDialog.show();
+
+//        Log.d("ViagemObject", new Callback<Resposta>() {
+//        API.postViagem(viagem, new Callback<Resposta>() {
+//            @Override
+//            public void onResponse(Call<Resposta> call, Response<Resposta> response) {
+//                pDialog.cancel();
+//                if (response != null && response.isSuccessful()) {
+//                    Resposta resposta = response.body();
+//
+//                    AlertDialog.Builder alert = new AlertDialog.Builder(ResumoActivity.this);
+//                    alert.setTitle("Sucesso");
+//                    alert.setMessage("Dados enviados com sucesso!");
+//                    alert.create().show();
+//                }
+//                else {
+//                    AlertDialog.Builder alert = new AlertDialog.Builder(ResumoActivity.this);
+//                    alert.setTitle("ERROR");
+//                    alert.setMessage("Erro ao enviar dados para o servidor!");
+//                    alert.create().show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Resposta> call, Throwable t) {
+//                pDialog.cancel();
+//                AlertDialog.Builder alert = new AlertDialog.Builder(ResumoActivity.this);
+//                alert.setTitle("ERROR");
+//                alert.setMessage(t.getMessage());
+//                alert.create().show();
 //            }
 //        });
     }

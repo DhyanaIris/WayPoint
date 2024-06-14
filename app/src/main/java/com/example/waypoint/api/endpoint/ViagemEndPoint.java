@@ -19,7 +19,7 @@ public interface ViagemEndPoint {
     @GET("api/listar/viagem")
     Call<ArrayList<Viagem>> getViagem(@Query("idConta") String idConta);
 
-//    @GET("api/listar/viagem/conta")
-//    Call<ArrayList<Viagem>> getAlunoVersao(@Path("version") String idConta);
+    @GET("api/listar/viagem/conta")
+    Call<ArrayList<Viagem>> getViagemConta(@Query("idConta") String idConta);
 
 }

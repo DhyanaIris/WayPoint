@@ -164,6 +164,8 @@ public class Viagem implements Serializable {
         return "Viagem{" +
                 "totalViajante=" + totalViajante +
                 ", duracaoViagem=" + duracaoViagem +
+                ", custoTotalViagem=" + custoTotalViagem +
+                ", custoPorPessoa=" + custoPorPessoa +
                 ", local='" + local + '\'' +
                 ", idConta=" + idConta +
                 ", gasolina=" + gasolinaStr +
