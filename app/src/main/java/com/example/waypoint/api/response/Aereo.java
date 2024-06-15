@@ -4,17 +4,17 @@ import java.io.Serializable;
 
 public class Aereo implements Serializable {
 
-    private int viagemid;
+    private int viagemId;
     private double custoPessoa;
     private double custoAluguelVeiculo;
     private int idConta;
 
-    public long getViagemid() {
-        return viagemid;
+    public int getViagemId() {
+        return viagemId;
     }
 
-    public void setViagemid(int viagemid) {
-        this.viagemid = viagemid;
+    public void setViagemId(int viagemId) {
+        this.viagemId = viagemId;
     }
 
     public double getCustoPessoa() {

@@ -4,17 +4,17 @@ import java.io.Serializable;
 
 public class Refeicao implements Serializable {
 
-    private int viagemid;
+    private int viagemId;
     private double custoRefeicao;
     private int refeicoesDia;
     private int idConta;
 
-    public int getViagemid() {
-        return viagemid;
+    public int getViagemId() {
+        return viagemId;
     }
 
-    public void setViagemid(int viagemid) {
-        this.viagemid = viagemid;
+    public void setViagemId(int viagemId) {
+        this.viagemId = viagemId;
     }
 
     public double getCustoRefeicao() {

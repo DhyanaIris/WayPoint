@@ -35,9 +35,9 @@ import com.example.waypoint.database.model.HospedagemModel;
 import com.example.waypoint.database.model.RefeicoesModel;
 import com.example.waypoint.database.model.TarifaAereaModel;
 import com.example.waypoint.database.model.ViagemModel;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
@@ -199,7 +199,7 @@ public class ResumoActivity extends AppCompatActivity {
 
         if (!listaDadosGerais.isEmpty()) {
             DadosGeraisModel dadosGeraisModel = listaDadosGerais.get(0);
-            viagem.setTotalViajante((int) dadosGeraisModel.getViajantes());
+            viagem.setTotalViajantes((int) dadosGeraisModel.getViajantes());
             viagem.setDuracaoViagem((int) dadosGeraisModel.getDuracao());
             viagem.setCustoTotalViagem(total);
             viagem.setCustoPorPessoa(custoPessoa);
@@ -210,7 +210,7 @@ public class ResumoActivity extends AppCompatActivity {
         Gasolina gasolina = new Gasolina();
         if (!listaGasolina.isEmpty()) {
             GasolinaModel gasolinaModel = listaGasolina.get(0);
-            gasolina.setViagemid((int) idViagem);
+            gasolina.setViagemId((int) idViagem);
             gasolina.setTotalEstimadoKM((int) gasolinaModel.getKmTotal());
             gasolina.setMediaKMLitro(gasolinaModel.getMediaKmLitro());
             gasolina.setCustoMedioLitro(gasolinaModel.getCustoLitro());
@@ -222,7 +222,7 @@ public class ResumoActivity extends AppCompatActivity {
         Aereo aereo = new Aereo();
         if (!listaTarifaAerea.isEmpty()) {
             TarifaAereaModel tarifaAereaModel = listaTarifaAerea.get(0);
-            aereo.setViagemid((int) idViagem);
+            aereo.setViagemId((int) idViagem);
             aereo.setCustoPessoa(tarifaAereaModel.getCustoPessoa());
             aereo.setCustoAluguelVeiculo(tarifaAereaModel.getAluguelVeiculo());
             aereo.setIdConta(94737);
@@ -232,7 +232,7 @@ public class ResumoActivity extends AppCompatActivity {
         Refeicao refeicao = new Refeicao();
         if (!listaRefeicoes.isEmpty()) {
             RefeicoesModel refeicoesModel = listaRefeicoes.get(0);
-            refeicao.setViagemid((int) idViagem);
+            refeicao.setViagemId((int) idViagem);
             refeicao.setCustoRefeicao(refeicoesModel.getCustoRefeicao());
             refeicao.setRefeicoesDia((int) refeicoesModel.getRefeicoesDia());
             refeicao.setIdConta(94737);
@@ -242,7 +242,7 @@ public class ResumoActivity extends AppCompatActivity {
         Hospedagem hospedagem = new Hospedagem();
         if (!listaHospedagem.isEmpty()) {
             HospedagemModel hospedagemModel = listaHospedagem.get(0);
-            hospedagem.setViagemid((int) idViagem);
+            hospedagem.setViagemId((int) idViagem);
             hospedagem.setCustoMedioNoite(hospedagemModel.getCustoMedio());
             hospedagem.setTotalNoite((int) hospedagemModel.getTotalNoites());
             hospedagem.setTotalQuartos((int) hospedagemModel.getTotalQuartos());
@@ -254,70 +254,54 @@ public class ResumoActivity extends AppCompatActivity {
         if (!listaDiversos.isEmpty()) {
             for (DiversosModel diversosModel : listaDiversos) {
                 Entretenimento entretenimento = new Entretenimento();
-                entretenimento.setViagemid((int) idViagem);
+                entretenimento.setViagemId((int) idViagem);
                 entretenimento.setEntretenimento(diversosModel.getNomeLocal());
                 entretenimento.setValor(diversosModel.getCusto());
                 entretenimento.setIdConta(94737);
                 entretenimentoList.add(entretenimento);
             }
         }
-        viagem.setEntretenimentoList(entretenimentoList);
+        viagem.setListaEntretenimento(entretenimentoList);
 
-        Log.d("ViagemObject", viagem.toString());
+        Gson gson = new Gson();
+        String viagemJson = gson.toJson(viagem);
+        Log.d("ViagemJSON", viagemJson);
 
-//        API.postViagem(viagem, new Callback<Resposta>() {
-//            @Override
-//            public void onResponse(Call<Resposta> call, Response<Resposta> response) {
-//                if (response.isSuccessful()) {
-//                    Toast.makeText(ResumoActivity.this, "Dados enviados com sucesso!", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(ResumoActivity.this, "Falha ao enviar dados!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Resposta> call, Throwable t) {
-//                Toast.makeText(ResumoActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        SweetAlertDialog pDialog = new SweetAlertDialog(ResumoActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Aguarde");
+        pDialog.setContentText("Enviando dados ao servidor ...");
+        pDialog.setCancelable(false);
+        pDialog.show();
 
+        API.postViagem(viagem, new Callback<Resposta>() {
+            @Override
+            public void onResponse(Call<Resposta> call, Response<Resposta> response) {
+                pDialog.cancel();
+                if (response != null && response.isSuccessful()) {
+                    Resposta resposta = response.body();
 
-//        SweetAlertDialog pDialog = new SweetAlertDialog(ResumoActivity.this, SweetAlertDialog.PROGRESS_TYPE);
-//        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-//        pDialog.setTitleText("Aguarde");
-//        pDialog.setContentText("Enviando dados ao servidor ...");
-//        pDialog.setCancelable(false);
-//        pDialog.show();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(ResumoActivity.this);
+                    alert.setTitle("Sucesso");
+                    alert.setMessage("Dados enviados com sucesso!");
+                    alert.create().show();
+                }
+                else {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(ResumoActivity.this);
+                    alert.setTitle("ERROR");
+                    alert.setMessage("Erro ao enviar dados para o servidor!");
+                    alert.create().show();
+                }
+            }
 
-//        Log.d("ViagemObject", new Callback<Resposta>() {
-//        API.postViagem(viagem, new Callback<Resposta>() {
-//            @Override
-//            public void onResponse(Call<Resposta> call, Response<Resposta> response) {
-//                pDialog.cancel();
-//                if (response != null && response.isSuccessful()) {
-//                    Resposta resposta = response.body();
-//
-//                    AlertDialog.Builder alert = new AlertDialog.Builder(ResumoActivity.this);
-//                    alert.setTitle("Sucesso");
-//                    alert.setMessage("Dados enviados com sucesso!");
-//                    alert.create().show();
-//                }
-//                else {
-//                    AlertDialog.Builder alert = new AlertDialog.Builder(ResumoActivity.this);
-//                    alert.setTitle("ERROR");
-//                    alert.setMessage("Erro ao enviar dados para o servidor!");
-//                    alert.create().show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Resposta> call, Throwable t) {
-//                pDialog.cancel();
-//                AlertDialog.Builder alert = new AlertDialog.Builder(ResumoActivity.this);
-//                alert.setTitle("ERROR");
-//                alert.setMessage(t.getMessage());
-//                alert.create().show();
-//            }
-//        });
+            @Override
+            public void onFailure(Call<Resposta> call, Throwable t) {
+                pDialog.cancel();
+                AlertDialog.Builder alert = new AlertDialog.Builder(ResumoActivity.this);
+                alert.setTitle("ERROR");
+                alert.setMessage(t.getMessage());
+                alert.create().show();
+            }
+        });
     }
 }

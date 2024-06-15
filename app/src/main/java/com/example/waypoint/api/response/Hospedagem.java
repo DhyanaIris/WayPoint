@@ -4,18 +4,18 @@ import java.io.Serializable;
 
 public class Hospedagem implements Serializable {
 
-    private int viagemid;
+    private int viagemId;
     private double custoMedioNoite;
     private int totalNoite;
     private int totalQuartos;
     private int idConta;
 
-    public int getViagemid() {
-        return viagemid;
+    public int getViagemId() {
+        return viagemId;
     }
 
-    public void setViagemid(int viagemid) {
-        this.viagemid = viagemid;
+    public void setViagemId(int viagemId) {
+        this.viagemId = viagemId;
     }
 
     public double getCustoMedioNoite() {

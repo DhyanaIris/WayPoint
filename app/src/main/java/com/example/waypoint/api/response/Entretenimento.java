@@ -4,17 +4,17 @@ import java.io.Serializable;
 
 public class Entretenimento implements Serializable {
 
-    private int viagemid;
+    private int viagemId;
     private String entretenimento;
     private double valor;
     private int idConta;
 
-    public int getViagemid() {
-        return viagemid;
+    public int getViagemId() {
+        return viagemId;
     }
 
-    public void setViagemid(int viagemid) {
-        this.viagemid = viagemid;
+    public void setViagemId(int viagemId) {
+        this.viagemId = viagemId;
     }
 
     public String getEntretenimento() {
@@ -41,13 +41,4 @@ public class Entretenimento implements Serializable {
         this.idConta = idConta;
     }
 
-    @Override
-    public String toString() {
-        return "Entretenimento{" +
-                "viagemid=" + viagemid +
-                ", entretenimento='" + entretenimento + '\'' +
-                ", valor=" + valor +
-                ", idConta=" + idConta +
-                '}';
-    }
 }

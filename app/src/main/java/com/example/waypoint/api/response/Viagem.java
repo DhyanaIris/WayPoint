@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Viagem implements Serializable {
 
-    private int totalViajante;
+    private int totalViajantes;
     private int duracaoViagem;
     private double custoTotalViagem;
     private double custoPorPessoa;
@@ -16,14 +16,14 @@ public class Viagem implements Serializable {
     private Aereo aereo;
     private Refeicao refeicao;
     private Hospedagem hospedagem;
-    private List<Entretenimento> entretenimentoList;
+    private List<Entretenimento> listaEntretenimento;
 
-    public int getTotalViajante() {
-        return totalViajante;
+    public int getTotalViajantes() {
+        return totalViajantes;
     }
 
-    public void setTotalViajante(int totalViajante) {
-        this.totalViajante = totalViajante;
+    public void setTotalViajantes(int totalViajante) {
+        this.totalViajantes = totalViajante;
     }
 
     public int getDuracaoViagem() {
@@ -98,81 +98,12 @@ public class Viagem implements Serializable {
         this.hospedagem = hospedagem;
     }
 
-    public List<Entretenimento> getEntretenimentoList() {
-        return entretenimentoList;
+    public List<Entretenimento> getListaEntretenimento() {
+        return listaEntretenimento;
     }
 
-    public void setEntretenimentoList(List<Entretenimento> entretenimentoList) {
-        this.entretenimentoList = entretenimentoList;
+    public void setListaEntretenimento(List<Entretenimento> listaEntretenimento) {
+        this.listaEntretenimento = listaEntretenimento;
     }
 
-    @Override
-    public String toString() {
-        String gasolinaStr = gasolina != null ?
-                "Gasolina{" +
-                        "viagemid=" + gasolina.getViagemid() +
-                        ", totalEstimadoKM=" + gasolina.getTotalEstimadoKM() +
-                        ", mediaKMLitro=" + gasolina.getMediaKMLitro() +
-                        ", custoMedioLitro=" + gasolina.getCustoMedioLitro() +
-                        ", totalVeiculos=" + gasolina.getTotalVeiculos() +
-                        ", idConta=" + gasolina.getIdConta() +
-                        '}' :
-                "null";
-
-        String aereoStr = aereo != null ?
-                "Aereo{" +
-                        "viagemid=" + aereo.getViagemid() +
-                        ", custoPessoa=" + aereo.getCustoPessoa() +
-                        ", custoAluguelVeiculo=" + aereo.getCustoAluguelVeiculo() +
-                        ", idConta=" + aereo.getIdConta() +
-                        '}' :
-                "null";
-
-        String refeicaoStr = refeicao != null ?
-                "Refeicao{" +
-                        "viagemid=" + refeicao.getViagemid() +
-                        ", custoRefeicao=" + refeicao.getCustoRefeicao() +
-                        ", refeicoesDia=" + refeicao.getRefeicoesDia() +
-                        ", idConta=" + refeicao.getIdConta() +
-                        '}' :
-                "null";
-
-        String hospedagemStr = hospedagem != null ?
-                "Hospedagem{" +
-                        "viagemid=" + hospedagem.getViagemid() +
-                        ", custoMedioNoite=" + hospedagem.getCustoMedioNoite() +
-                        ", totalNoite=" + hospedagem.getTotalNoite() +
-                        ", totalQuartos=" + hospedagem.getTotalQuartos() +
-                        ", idConta=" + hospedagem.getIdConta() +
-                        '}' :
-                "null";
-
-        StringBuilder entretenimentoListStr = new StringBuilder();
-        if (entretenimentoList != null) {
-            entretenimentoListStr.append("EntretenimentoList{");
-            for (Entretenimento entretenimento : entretenimentoList) {
-                entretenimentoListStr.append(entretenimento.toString()).append(", ");
-            }
-            if (entretenimentoListStr.length() > 0) {
-                entretenimentoListStr.delete(entretenimentoListStr.length() - 2, entretenimentoListStr.length());
-            }
-            entretenimentoListStr.append('}');
-        } else {
-            entretenimentoListStr.append("null");
-        }
-
-        return "Viagem{" +
-                "totalViajante=" + totalViajante +
-                ", duracaoViagem=" + duracaoViagem +
-                ", custoTotalViagem=" + custoTotalViagem +
-                ", custoPorPessoa=" + custoPorPessoa +
-                ", local='" + local + '\'' +
-                ", idConta=" + idConta +
-                ", gasolina=" + gasolinaStr +
-                ", aereo=" + aereoStr +
-                ", refeicao=" + refeicaoStr +
-                ", hospedagem=" + hospedagemStr +
-                ", entretenimentoList=" + entretenimentoListStr +
-                '}';
-    }
 }
